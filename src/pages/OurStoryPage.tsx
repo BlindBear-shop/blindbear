@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
 import model1 from "@/assets/model-1.png";
 import model2 from "@/assets/model-2.png";
 import heroBanner from "@/assets/hero-banner.jpg";
@@ -8,194 +8,316 @@ import heroBanner from "@/assets/hero-banner.jpg";
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
   visible: (i: number = 0) => ({
-    opacity: 1, y: 0,
+    opacity: 1,
+    y: 0,
     transition: { duration: 0.6, delay: i * 0.12 },
   }),
 };
 
-const OurStoryPage = () => (
-  <div className="pb-16 sm:pb-0">
-    {/* Hero */}
-    <section className="relative h-[50vh] sm:h-[60vh] overflow-hidden">
-      <img src={heroBanner} alt="Our Story" className="absolute inset-0 w-full h-full object-cover" />
-      <div className="absolute inset-0 bg-foreground/60" />
-      <div className="relative h-full container flex flex-col justify-end pb-10 sm:pb-16">
-        <motion.div initial="hidden" animate="visible" variants={fadeUp}>
-          <div className="flex items-center gap-2 mb-3">
-            <div className="w-8 h-px bg-background/50" />
-            <p className="font-body text-[10px] tracking-[0.25em] uppercase text-background/60">Est. 2024</p>
-          </div>
-          <h1 className="font-display text-4xl sm:text-6xl md:text-7xl text-background leading-[0.9]">
-            Our <span className="italic font-light">Story</span>
-          </h1>
-        </motion.div>
-      </div>
-    </section>
+const OurStoryPage = () => {
+  return (
+    <div className="pb-16 sm:pb-0">
 
-    {/* Origin */}
-    <section className="container py-16 sm:py-24 lg:py-32">
-      <div className="grid md:grid-cols-2 gap-10 sm:gap-16 lg:gap-24 items-center">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
-        >
-          <p className="font-body text-[9px] tracking-[0.25em] uppercase text-muted-foreground/40 mb-3">The Beginning</p>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl text-foreground leading-[1.1] mb-6">
-            Born from a desire for
-            <br />
-            <span className="italic font-light">honest clothing</span>
-          </h2>
-          <div className="space-y-4 font-body text-sm text-foreground/45 leading-relaxed">
-            <p>
-              BLINDBEAR was born in 2024 in the heart of India — from a simple frustration: why does premium
-              fashion have to mean loud logos and inflated prices? We believed there was a better way.
-            </p>
-            <p>
-              Two friends, one shared obsession — create clothing that speaks through its fabric, its cut,
-              its feel against your skin. Not through a name stitched on the outside. We started with a
-              single linen shirt, sewn in a small atelier in Mumbai, and the response was overwhelming.
-            </p>
-            <p>
-              Today, every BLINDBEAR piece is still designed in India with the same philosophy: less noise,
-              more substance. We work directly with artisan workshops, cutting out the middlemen, so you
-              get exceptional quality without the luxury markup.
-            </p>
-          </div>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="relative aspect-[3/4] overflow-hidden"
-        >
-          <img src={model2} alt="BLINDBEAR Origins" className="w-full h-full object-cover" />
-          <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 glass px-4 py-3">
-            <p className="font-display text-lg sm:text-xl text-foreground">Designed in India</p>
-            <p className="font-body text-[9px] tracking-wider text-foreground/40 uppercase">Mumbai · Delhi · Jaipur</p>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+      {/* HERO */}
+      <section className="relative h-[55vh] sm:h-[65vh] overflow-hidden">
+        <img
+          src={heroBanner}
+          alt="BlindBear Story"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
 
-    {/* Values */}
-    <section className="bg-foreground text-background py-16 sm:py-24 lg:py-32">
-      <div className="container">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
-          className="text-center mb-12 sm:mb-16"
-        >
-          <p className="font-body text-[9px] tracking-[0.25em] uppercase text-background/35 mb-2">What We Stand For</p>
-          <h2 className="font-display text-3xl sm:text-5xl">Our Values</h2>
-        </motion.div>
+        <div className="absolute inset-0 bg-black/60" />
 
-        <div className="grid sm:grid-cols-3 gap-8 sm:gap-12">
-          {[
-            {
-              num: "01",
-              title: "Radical Simplicity",
-              desc: "We strip away the unnecessary. Every seam, every button, every thread has a purpose. What remains is pure, intentional design that transcends trends.",
-            },
-            {
-              num: "02",
-              title: "Honest Craft",
-              desc: "We partner with India's finest artisan workshops. No mass production. Each piece is crafted with care — because quality you can feel doesn't need a billboard.",
-            },
-            {
-              num: "03",
-              title: "Conscious Luxury",
-              desc: "Premium doesn't mean wasteful. We use sustainable fabrics, ethical production, and transparent pricing. Luxury that respects both people and planet.",
-            },
-          ].map((value, i) => (
-            <motion.div
-              key={value.num}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              custom={i}
-              variants={fadeUp}
-              className="border-t border-background/10 pt-6"
-            >
-              <span className="font-display text-3xl sm:text-4xl text-background/15 mb-3 block">{value.num}</span>
-              <h3 className="font-display text-xl sm:text-2xl mb-3">{value.title}</h3>
-              <p className="font-body text-xs text-background/35 leading-relaxed">{value.desc}</p>
-            </motion.div>
-          ))}
+        <div className="relative h-full container flex flex-col justify-end pb-12 sm:pb-16">
+
+          <motion.div initial="hidden" animate="visible" variants={fadeUp}>
+
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-8 h-[1px] bg-white/40" />
+              <p className="text-[10px] tracking-[0.25em] uppercase text-white/70">
+                Est. 2024
+              </p>
+            </div>
+
+            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl text-white leading-[0.9]">
+              Our <span className="italic font-light">Story</span>
+            </h1>
+
+            <p className="text-white/70 mt-4 max-w-lg text-sm sm:text-base">
+              Wear Comfort. Express Yourself.
+            </p>
+
+          </motion.div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    {/* Craft Process */}
-    <section className="container py-16 sm:py-24 lg:py-32">
-      <div className="grid md:grid-cols-2 gap-10 sm:gap-16 lg:gap-24 items-center">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="relative aspect-[4/5] overflow-hidden order-2 md:order-1"
-        >
-          <img src={model1} alt="BLINDBEAR Craft" className="w-full h-full object-cover" />
-        </motion.div>
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
-          className="order-1 md:order-2"
-        >
-          <p className="font-body text-[9px] tracking-[0.25em] uppercase text-muted-foreground/40 mb-3">The Process</p>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl text-foreground leading-[1.1] mb-6">
-            From sketch to
-            <br />
-            <span className="italic font-light">your wardrobe</span>
-          </h2>
-          <div className="space-y-6">
+
+      {/* BRAND STORY */}
+      <section className="container py-20 sm:py-28 lg:py-32">
+
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-24 items-center">
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+          >
+
+            <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-4">
+              The Beginning
+            </p>
+
+            <h2 className="font-display text-4xl sm:text-5xl leading-tight mb-8">
+              Clothing that
+              <br />
+              <span className="italic font-light">feels like you</span>
+            </h2>
+
+            <div className="space-y-5 text-sm text-foreground/60 leading-relaxed">
+
+              <p>
+                BlindBear was born from a simple belief — clothing should feel like you.
+              </p>
+
+              <p>
+                In a world where fashion constantly tries to define identity,
+                BlindBear believes clothing should do the opposite. It should
+                create space for individuality, comfort, and quiet confidence.
+                No labels. No boundaries.
+              </p>
+
+              <p>
+                Every piece we create is designed to move with you through
+                everyday life — minimal, thoughtful, and gender-neutral.
+                Because style isn’t about fitting into categories.
+                It’s about feeling comfortable in your own skin.
+              </p>
+
+              <p>
+                BlindBear is more than clothing. It’s a space where softness
+                meets strength, and where everyone belongs.
+              </p>
+
+            </div>
+
+          </motion.div>
+
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="relative aspect-[3/4] overflow-hidden rounded-sm"
+          >
+
+            <img
+              src={model2}
+              alt="BlindBear Fashion"
+              className="w-full h-full object-cover"
+            />
+
+            <div className="absolute bottom-6 left-6 bg-white/90 backdrop-blur px-5 py-4">
+
+              <p className="font-display text-lg">
+                Designed in India
+              </p>
+
+              <p className="text-xs uppercase tracking-widest text-muted-foreground">
+                Minimal · Gender Neutral · Timeless
+              </p>
+
+            </div>
+
+          </motion.div>
+
+        </div>
+      </section>
+
+
+      {/* VALUES */}
+      <section className="bg-black text-white py-20 sm:py-28">
+
+        <div className="container">
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="text-center mb-16"
+          >
+
+            <p className="text-[10px] tracking-[0.25em] uppercase text-white/40 mb-3">
+              Our Philosophy
+            </p>
+
+            <h2 className="font-display text-4xl sm:text-5xl">
+              What We Stand For
+            </h2>
+
+          </motion.div>
+
+
+          <div className="grid md:grid-cols-3 gap-10">
+
             {[
-              { step: "Design", detail: "Every piece begins as a sketch in our Mumbai studio, inspired by the effortless elegance of Indian living." },
-              { step: "Source", detail: "We hand-select fabrics from trusted mills — premium linens, organic cottons, and sustainable blends." },
-              { step: "Craft", detail: "Small-batch production in artisan workshops ensures every stitch meets our exacting standards." },
-              { step: "Deliver", detail: "Thoughtfully packaged and shipped directly to you — no retail markup, no waste." },
-            ].map((item, i) => (
-              <div key={item.step} className="flex gap-4">
-                <span className="font-display text-2xl text-foreground/15 w-8 flex-shrink-0">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <h4 className="font-display text-lg text-foreground mb-1">{item.step}</h4>
-                  <p className="font-body text-xs text-foreground/40 leading-relaxed">{item.detail}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-      </div>
-    </section>
+              {
+                num: "01",
+                title: "Comfort First",
+                desc: "Clothing should move with you. Every BlindBear piece is designed with comfort, softness, and ease at its core."
+              },
+              {
+                num: "02",
+                title: "Quiet Confidence",
+                desc: "True style doesn’t shout. We believe in subtle design, minimal aesthetics, and timeless pieces."
+              },
+              {
+                num: "03",
+                title: "Freedom of Expression",
+                desc: "Fashion shouldn’t define who you are. Our gender-neutral designs allow everyone to express themselves freely."
+              }
+            ].map((value, i) => (
 
-    {/* CTA */}
-    <section className="container pb-16 sm:pb-24">
-      <div className="text-center">
-        <h2 className="font-display text-3xl sm:text-5xl text-foreground mb-4">
-          Ready to <span className="italic font-light">experience</span> BLINDBEAR?
+              <motion.div
+                key={value.num}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                custom={i}
+                variants={fadeUp}
+                className="border-t border-white/10 pt-6"
+              >
+
+                <span className="text-4xl text-white/20 block mb-3">
+                  {value.num}
+                </span>
+
+                <h3 className="text-xl mb-2">
+                  {value.title}
+                </h3>
+
+                <p className="text-sm text-white/60">
+                  {value.desc}
+                </p>
+
+              </motion.div>
+
+            ))}
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* CRAFT SECTION */}
+      <section className="container py-20 sm:py-28">
+
+        <div className="grid md:grid-cols-2 gap-14 lg:gap-24 items-center">
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="aspect-[4/5] overflow-hidden"
+          >
+            <img
+              src={model1}
+              alt="BlindBear Craft"
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
+
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+          >
+
+            <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-3">
+              Our Process
+            </p>
+
+            <h2 className="font-display text-4xl sm:text-5xl leading-tight mb-6">
+              Thoughtfully
+              <br />
+              <span className="italic font-light">crafted</span>
+            </h2>
+
+            <p className="text-sm text-foreground/60 leading-relaxed mb-6">
+              Every BlindBear piece is designed with care — from fabric
+              selection to the final stitch. We focus on timeless designs
+              that remain relevant beyond trends.
+            </p>
+
+            <p className="text-sm text-foreground/60 leading-relaxed">
+              Our goal is simple: create clothing that feels effortless,
+              comfortable, and authentic — every single day.
+            </p>
+
+          </motion.div>
+
+        </div>
+
+      </section>
+
+
+      {/* CONTACT */}
+      <section className="bg-muted py-20">
+
+        <div className="container text-center">
+
+          <h2 className="font-display text-4xl sm:text-5xl mb-6">
+            Get in Touch
+          </h2>
+
+          <p className="text-foreground/60 max-w-lg mx-auto mb-8 text-sm">
+            Have questions, feedback, or collaboration ideas?
+            We'd love to hear from you.
+          </p>
+
+          <a
+            href="mailto:blindbear.web@gmail.com"
+            className="inline-flex items-center gap-3 bg-black text-white px-8 py-4 text-xs tracking-[0.15em] uppercase hover:bg-black/90 transition"
+          >
+            <Mail size={16} />
+            blindbear.web@gmail.com
+          </a>
+
+        </div>
+
+      </section>
+
+
+      {/* CTA */}
+      <section className="container py-16 text-center">
+
+        <h2 className="font-display text-4xl sm:text-5xl mb-4">
+          Discover BlindBear
         </h2>
-        <p className="font-body text-sm text-foreground/35 mb-8 max-w-md mx-auto">
-          Discover clothing that lets you be seen — not your labels.
+
+        <p className="text-foreground/60 mb-8">
+          Clothing that lets you be yourself.
         </p>
+
         <Link
           to="/products"
-          className="group inline-flex items-center gap-2.5 bg-foreground text-background px-8 py-4 font-body text-xs tracking-[0.15em] uppercase hover:bg-foreground/90 transition-all"
+          className="inline-flex items-center gap-2 bg-black text-white px-8 py-4 text-xs tracking-[0.15em] uppercase hover:bg-black/90 transition"
         >
-          Shop the Collection
-          <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+          Shop Collection
+          <ArrowRight size={14} />
         </Link>
-      </div>
-    </section>
-  </div>
-);
+
+      </section>
+
+    </div>
+  );
+};
 
 export default OurStoryPage;

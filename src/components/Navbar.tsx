@@ -33,13 +33,11 @@ const Navbar = () => {
 
   const { totalItems } = useCart();
   const { totalItems: wishlistCount } = useWishlist();
-
   const location = useLocation();
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 30);
-    window.addEventListener("scroll", handler, { passive: true });
-
+    window.addEventListener("scroll", handler);
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
@@ -52,12 +50,11 @@ const Navbar = () => {
 
   const navBg =
     scrolled || !isHome
-      ? "bg-background/80 backdrop-blur-xl border-b border-foreground/[0.05]"
+      ? "bg-background/90 backdrop-blur-xl border-b border-foreground/[0.05]"
       : "bg-transparent";
 
   return (
     <>
-      {/* HEADER */}
       <header className="fixed top-0 left-0 right-0 z-50">
 
         {/* Announcement */}
@@ -74,7 +71,7 @@ const Navbar = () => {
               className="lg:hidden p-2"
               onClick={() => setMobileOpen(!mobileOpen)}
             >
-              {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+              {mobileOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
 
             {/* LOGO */}
@@ -89,7 +86,7 @@ const Navbar = () => {
               />
             </Link>
 
-            {/* DESKTOP LINKS */}
+            {/* DESKTOP NAV */}
             <ul className="hidden lg:flex items-center gap-10">
               {navLinks.map((link) => (
                 <li key={link.label}>
@@ -106,7 +103,6 @@ const Navbar = () => {
             {/* RIGHT ICONS */}
             <div className="flex items-center gap-1">
 
-              {/* SEARCH */}
               <button
                 onClick={() => setSearchOpen(!searchOpen)}
                 className="p-2"
@@ -114,13 +110,11 @@ const Navbar = () => {
                 <Search size={18} />
               </button>
 
-              {/* WISHLIST */}
               <Link
                 to="/wishlist"
                 className="relative p-2 hidden sm:flex"
               >
                 <Heart size={18} />
-
                 {wishlistCount > 0 && (
                   <span className="absolute top-0 right-0 bg-foreground text-background text-[8px] rounded-full w-4 h-4 flex items-center justify-center">
                     {wishlistCount}
@@ -128,10 +122,8 @@ const Navbar = () => {
                 )}
               </Link>
 
-              {/* CART */}
               <Link to="/cart" className="relative p-2">
                 <ShoppingBag size={18} />
-
                 {totalItems > 0 && (
                   <span className="absolute top-0 right-0 bg-foreground text-background text-[8px] rounded-full w-4 h-4 flex items-center justify-center">
                     {totalItems}
@@ -139,18 +131,18 @@ const Navbar = () => {
                 )}
               </Link>
 
-              {/* ACCOUNT */}
               <Link
                 to="/login"
                 className="hidden sm:flex p-2"
               >
                 <User size={18} />
               </Link>
+
             </div>
           </div>
         </nav>
 
-        {/* SEARCH BAR */}
+        {/* SEARCH */}
         <AnimatePresence>
           {searchOpen && (
             <motion.div
@@ -173,32 +165,36 @@ const Navbar = () => {
         <AnimatePresence>
           {mobileOpen && (
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 top-[72px] bg-background/95 backdrop-blur-xl lg:hidden"
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ duration: 0.35 }}
+              className="fixed inset-0 bg-background z-40 lg:hidden"
             >
-              <div className="container py-10">
-                <ul className="flex flex-col gap-6">
+              <div className="pt-24 px-6">
+
+                <ul className="flex flex-col gap-8">
                   {navLinks.map((link) => (
                     <li key={link.label}>
                       <Link
                         to={link.to}
-                        className="text-2xl font-display"
+                        className="text-3xl font-display"
                       >
                         {link.label}
                       </Link>
                     </li>
                   ))}
                 </ul>
+
               </div>
             </motion.div>
           )}
         </AnimatePresence>
+
       </header>
 
       {/* MOBILE BOTTOM NAV */}
-      <div className="fixed bottom-0 left-0 right-0 sm:hidden bg-background/90 backdrop-blur-xl border-t border-foreground/[0.05] z-50">
+      <div className="fixed bottom-0 left-0 right-0 sm:hidden bg-background/95 backdrop-blur-xl border-t border-foreground/[0.05] z-50">
 
         <div className="grid grid-cols-5 h-[56px]">
 
@@ -215,9 +211,9 @@ const Navbar = () => {
               to={to}
               className="flex flex-col items-center justify-center text-[10px]"
             >
-              <div className="relative">
 
-                <Icon size={18} />
+              <div className="relative">
+                <Icon size={20} />
 
                 {badge > 0 && (
                   <span className="absolute -top-1 -right-2 bg-foreground text-background text-[8px] w-4 h-4 rounded-full flex items-center justify-center">
@@ -228,6 +224,7 @@ const Navbar = () => {
               </div>
 
               <span>{label}</span>
+
             </Link>
 
           ))}

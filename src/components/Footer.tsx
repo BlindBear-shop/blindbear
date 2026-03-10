@@ -1,46 +1,72 @@
 import { Link } from "react-router-dom";
-import { Instagram, Twitter } from "lucide-react";
+import { Instagram, Twitter, Mail } from "lucide-react";
+import logo from "@/assets/logo-light.png";
 
 const Footer = () => (
-  <footer className="bg-foreground text-background hidden sm:block">
-    {/* Links */}
-    <div className="container py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
-      <div className="col-span-2 md:col-span-1">
-        <h4 className="font-display text-xl mb-3">BLINDBEAR</h4>
-        <p className="text-background/25 text-[11px] font-body leading-relaxed max-w-[200px]">
-          A modern Indian fashion brand focused on premium minimalist clothing. Designed in India.
+  <footer className="bg-foreground text-background mt-24">
+
+    {/* BRAND HEADER */}
+    <div className="border-b border-background/10">
+      <div className="container py-20 text-center">
+
+        <img
+          src={logo}
+          alt="BlindBear"
+          className="mx-auto w-16 mb-6 opacity-90"
+        />
+
+        <h2 className="font-display text-6xl sm:text-7xl tracking-wide">
+          BLINDBEAR
+        </h2>
+
+        <p className="text-background/50 mt-4 text-sm">
+          Wear Comfort. Express Yourself.
         </p>
-      </div>
-      <div>
-          <h5 className="font-body text-[9px] tracking-[0.2em] uppercase mb-4 text-background/40">Shop</h5>
-          <ul className="space-y-2 text-[11px] font-body text-background/30">
-            <li><Link to="/products?gender=men" className="hover:text-background/60 transition-colors">Men</Link></li>
-            <li><Link to="/products?gender=women" className="hover:text-background/60 transition-colors">Women</Link></li>
-            <li><Link to="/products?filter=new" className="hover:text-background/60 transition-colors">New Arrivals</Link></li>
-            <li><Link to="/products?filter=sale" className="hover:text-background/60 transition-colors">Sale</Link></li>
-          </ul>
-        </div>
-        <div>
-          <h5 className="font-body text-[9px] tracking-[0.2em] uppercase mb-4 text-background/40">Company</h5>
-          <ul className="space-y-2 text-[11px] font-body text-background/30">
-            <li><Link to="/our-story" className="hover:text-background/60 transition-colors">Our Story</Link></li>
-            <li><Link to="/contact" className="hover:text-background/60 transition-colors">Contact Us</Link></li>
-            <li><span className="hover:text-background/60 transition-colors cursor-pointer">Shipping & Returns</span></li>
-            <li><span className="hover:text-background/60 transition-colors cursor-pointer">Size Guide</span></li>
-          </ul>
-        </div>
-      <div>
-        <h5 className="font-body text-[9px] tracking-[0.2em] uppercase mb-4 text-background/40">Follow</h5>
-        <div className="flex gap-3">
-          <a href="#" className="text-background/25 hover:text-background/50 transition-colors"><Instagram size={16} /></a>
-          <a href="#" className="text-background/25 hover:text-background/50 transition-colors"><Twitter size={16} /></a>
-        </div>
+
       </div>
     </div>
-    <div className="container py-5 border-t border-background/[0.06] flex items-center justify-between">
-      <p className="text-[9px] font-body text-background/15 tracking-wide">© 2026 BLINDBEAR India</p>
-      <p className="text-[9px] font-body text-background/15 tracking-wide">Designed in India</p>
+
+    {/* SOCIAL + CONTACT */}
+    <div className="container py-10 flex flex-col items-center justify-center gap-4">
+
+      <div className="flex items-center gap-6">
+
+        <a
+          href="mailto:blindbear.web@gmail.com"
+          className="text-background/50 hover:text-background transition"
+        >
+          <Mail size={20} />
+        </a>
+
+        <a
+          href="https://www.instagram.com/blindbear26?igsh=MTkwb2g2dnB4ZmpsYw=="
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-background/50 hover:text-background transition"
+        >
+          <Instagram size={20} />
+        </a>
+
+      </div>
+
     </div>
+
+    {/* COPYRIGHT */}
+    <div className="border-t border-background/10">
+      <div className="container py-8 text-center">
+
+        <p className="text-base text-background/50 tracking-wide mb-2">
+          © 2026 BLINDBEAR
+        </p>
+
+        <p className="text-sm text-background/40 flex items-center justify-center gap-2">
+          <Mail size={16} />
+          blindbear.web@gmail.com
+        </p>
+
+      </div>
+    </div>
+
   </footer>
 );
 

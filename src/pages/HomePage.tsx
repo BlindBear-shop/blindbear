@@ -1,9 +1,18 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Truck, RotateCcw, Shield, Volume2, VolumeX } from "lucide-react";
+import {
+  ArrowRight,
+  Truck,
+  RotateCcw,
+  Shield,
+  Volume2,
+  VolumeX,
+} from "lucide-react";
+
 import ProductCard from "@/components/ProductCard";
 import { products } from "@/data/products";
 import video_homepage from "@/assets/video_homepage.mp4";
+
 import { useRef, useState } from "react";
 
 const fadeUp = {
@@ -11,16 +20,14 @@ const fadeUp = {
   visible: (i: number = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, delay: i * 0.1 },
+    transition: { duration: 0.6, delay: i * 0.12 },
   }),
 };
 
 const HomePage = () => {
-
   const featuredProducts = products.slice(0, 8);
   const trendingProducts = products.filter((p) => p.rating >= 4.5);
 
-  /* MUSIC */
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
 
@@ -48,16 +55,14 @@ const HomePage = () => {
       {/* MUSIC BUTTON */}
       <button
         onClick={toggleMusic}
-        className="fixed bottom-28 sm:bottom-10 right-6 z-50 bg-black text-white p-3 rounded-full shadow-lg hover:scale-105 transition"
+        className="fixed bottom-28 sm:bottom-10 right-5 z-50 bg-black text-white p-3 rounded-full shadow-lg hover:scale-105 transition"
       >
         {playing ? <Volume2 size={20} /> : <VolumeX size={20} />}
       </button>
 
-
       {/* HERO */}
-      <section className="relative h-screen overflow-hidden">
+      <section className="relative h-[85vh] sm:h-screen overflow-hidden">
 
-        {/* Video */}
         <video
           autoPlay
           muted
@@ -69,76 +74,75 @@ const HomePage = () => {
           <source src={video_homepage} type="video/mp4" />
         </video>
 
-        {/* Overlay */}
         <div className="absolute inset-0 bg-black/50" />
 
-        {/* Hero Content */}
-        <div className="relative h-full flex items-end pb-24 container">
+        <div className="relative h-full flex items-end sm:items-center pb-16 sm:pb-0 container">
 
           <motion.div
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="max-w-xl text-white"
+            className="max-w-md sm:max-w-xl text-white"
           >
 
             <motion.p
               variants={fadeUp}
               custom={0}
-              className="text-[11px] tracking-[0.25em] uppercase text-white/70 mb-3"
+              className="text-[10px] tracking-[0.25em] uppercase text-white/70 mb-3"
             >
-              Spring / Summer 2026
+              BLINDBEAR COLLECTION
             </motion.p>
 
             <motion.h1
               variants={fadeUp}
               custom={1}
-              className="text-5xl sm:text-7xl font-light leading-[0.95] mb-6"
+              className="text-4xl sm:text-6xl lg:text-7xl font-light leading-[1.05] mb-5"
             >
-              Effortless
+              BlindBear
               <br />
-              <span className="italic">Elegance</span>
+              <span className="italic">Quality Clothes</span>
             </motion.h1>
 
             <motion.p
               variants={fadeUp}
               custom={2}
-              className="text-white/70 text-sm mb-8 max-w-sm"
+              className="text-white/75 text-sm mb-8 max-w-sm"
             >
-              Premium minimalist clothing designed in India.
+              Since 2026.
             </motion.p>
 
-            <motion.div variants={fadeUp} custom={3} className="flex gap-3">
+            <motion.div
+              variants={fadeUp}
+              custom={3}
+              className="flex gap-3 flex-wrap"
+            >
 
               <Link
-                to="/products"
-                className="inline-flex items-center gap-2 bg-white text-black px-8 py-3 text-xs uppercase tracking-wider hover:bg-white/90 transition"
+                to="/products?gender=men"
+                className="inline-flex items-center gap-2 bg-white text-black px-7 py-3 text-xs uppercase tracking-wider hover:bg-white/90 transition"
               >
-                Explore Collection
+                Explore Men
                 <ArrowRight size={14} />
               </Link>
 
               <Link
-                to="/products"
-                className="border border-white/30 text-white px-8 py-3 text-xs uppercase tracking-wider hover:bg-white/10 transition"
+                to="/products?gender=women"
+                className="border border-white/30 text-white px-7 py-3 text-xs uppercase tracking-wider hover:bg-white/10 transition"
               >
-                Shop Now
+                Explore Women
               </Link>
 
             </motion.div>
 
           </motion.div>
-
         </div>
-
       </section>
-
 
       {/* TRUST STRIP */}
       <section className="border-b border-black/5">
         <div className="container py-6">
 
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-4 text-center">
 
             {[
               { icon: Truck, label: "Free Shipping" },
@@ -146,13 +150,11 @@ const HomePage = () => {
               { icon: Shield, label: "Secure Pay" },
             ].map(({ icon: Icon, label }) => (
 
-              <div
-                key={label}
-                className="flex items-center justify-center gap-2"
-              >
-                <Icon size={14} className="text-black/30" />
+              <div key={label} className="flex flex-col items-center gap-1">
 
-                <span className="text-[11px] uppercase tracking-wider text-black/50">
+                <Icon size={16} className="text-black/40" />
+
+                <span className="text-[10px] uppercase tracking-wider text-black/50">
                   {label}
                 </span>
 
@@ -165,17 +167,16 @@ const HomePage = () => {
         </div>
       </section>
 
-
       {/* FEATURED PRODUCTS */}
-      <section className="container py-16">
+      <section className="container py-14 sm:py-16">
 
-        <div className="mb-10">
+        <div className="mb-8">
 
           <p className="text-[10px] uppercase tracking-[0.25em] text-black/40 mb-1">
             Curated for You
           </p>
 
-          <h2 className="text-3xl">
+          <h2 className="text-2xl sm:text-3xl font-light">
             Featured Collection
           </h2>
 
@@ -184,42 +185,39 @@ const HomePage = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10">
 
           {featuredProducts.map((product, i) => (
-
             <ProductCard
               key={product.id}
               product={product}
               index={i}
             />
-
           ))}
 
         </div>
 
       </section>
 
-
       {/* TRENDING */}
       <section className="pb-20">
 
-        <div className="container mb-10">
+        <div className="container mb-8">
 
           <p className="text-[10px] uppercase tracking-[0.25em] text-black/40 mb-1">
-            What's Hot
+            Trending Now
           </p>
 
-          <h2 className="text-3xl">
-            Trending Now
+          <h2 className="text-2xl sm:text-3xl font-light">
+            Popular Right Now
           </h2>
 
         </div>
 
-        <div className="flex gap-4 overflow-x-auto px-6 pb-4 snap-x snap-mandatory">
+        <div className="flex gap-4 overflow-x-auto px-4 sm:px-6 pb-4 snap-x snap-mandatory">
 
           {trendingProducts.map((product, i) => (
 
             <div
               key={product.id}
-              className="flex-shrink-0 w-[44vw] sm:w-56 md:w-64 snap-start"
+              className="flex-shrink-0 w-[55vw] sm:w-56 md:w-64 snap-start"
             >
 
               <ProductCard
