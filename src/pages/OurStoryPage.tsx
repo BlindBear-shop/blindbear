@@ -35,7 +35,7 @@ const OurStoryPage = () => {
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-[1px] bg-white/40" />
               <p className="text-[10px] tracking-[0.25em] uppercase text-white/70">
-                Est. 2024
+                Est. 2026
               </p>
             </div>
 
