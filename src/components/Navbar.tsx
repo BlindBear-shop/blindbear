@@ -33,18 +33,40 @@ const Navbar = () => {
 
   const { totalItems } = useCart();
   const { totalItems: wishlistCount } = useWishlist();
+
   const location = useLocation();
 
+  /* Scroll detection */
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 30);
     window.addEventListener("scroll", handler);
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
+  /* Close menu when route changes */
   useEffect(() => {
     setMobileOpen(false);
     setSearchOpen(false);
   }, [location.pathname]);
+
+  /* Scroll page to top when navigating */
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [location]);
+
+  /* Active nav detection */
+  const isActive = (link) => {
+    const currentUrl = location.pathname + location.search;
+
+    if (link.to === "/") {
+      return location.pathname === "/";
+    }
+
+    return currentUrl === link.to;
+  };
 
   const isHome = location.pathname === "/";
 
@@ -88,16 +110,29 @@ const Navbar = () => {
 
             {/* DESKTOP NAV */}
             <ul className="hidden lg:flex items-center gap-10">
-              {navLinks.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    to={link.to}
-                    className="text-[12px] uppercase tracking-[0.14em] text-foreground/60 hover:text-foreground"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+              {navLinks.map((link) => {
+                const active = isActive(link);
+
+                return (
+                  <li key={link.label} className="relative">
+
+                    <Link
+                      to={link.to}
+                      className={`text-[12px] uppercase tracking-[0.14em] pb-1
+                      ${active
+                        ? "text-foreground"
+                        : "text-foreground/60 hover:text-foreground"}`}
+                    >
+                      {link.label}
+                    </Link>
+
+                    {active && (
+                      <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-foreground"/>
+                    )}
+
+                  </li>
+                );
+              })}
             </ul>
 
             {/* RIGHT ICONS */}
@@ -164,30 +199,42 @@ const Navbar = () => {
         {/* MOBILE MENU */}
         <AnimatePresence>
           {mobileOpen && (
-            <motion.div
-              initial={{ x: "-100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "-100%" }}
-              transition={{ duration: 0.35 }}
-              className="fixed inset-0 bg-background z-40 lg:hidden"
-            >
-              <div className="pt-24 px-6">
+            <>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setMobileOpen(false)}
+                className="fixed inset-0 bg-black/30 backdrop-blur-sm z-30 lg:hidden"
+              />
+
+              <motion.div
+                initial={{ x: "-100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "-100%" }}
+                transition={{ duration: 0.22 }}
+                className="fixed top-0 left-0 bottom-0 w-[85%] bg-background z-40 lg:hidden pt-24 px-6"
+              >
 
                 <ul className="flex flex-col gap-8">
+
                   {navLinks.map((link) => (
                     <li key={link.label}>
                       <Link
                         to={link.to}
-                        className="text-3xl font-display"
+                        onClick={() => setMobileOpen(false)}
+                        className="flex items-center justify-between text-2xl font-medium"
                       >
                         {link.label}
+                        <span className="text-lg opacity-50">›</span>
                       </Link>
                     </li>
                   ))}
+
                 </ul>
 
-              </div>
-            </motion.div>
+              </motion.div>
+            </>
           )}
         </AnimatePresence>
 
