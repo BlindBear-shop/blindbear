@@ -48,6 +48,14 @@ const Navbar = () => {
     setSearchOpen(false);
   }, [location.pathname]);
 
+  /* Scroll page to top when navigating */
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [location.pathname]);
+
   const isActive = (link: any) => {
     const currentUrl = location.pathname + location.search;
 
@@ -72,16 +80,15 @@ const Navbar = () => {
     <>
       <header className="fixed top-0 left-0 right-0 z-50">
 
-        {/* MOBILE MARQUEE ANNOUNCEMENT */}
+        {/* ANNOUNCEMENT */}
         <div className="bg-black text-white text-[10px] tracking-[0.2em] uppercase overflow-hidden">
 
           <div className="hidden sm:block text-center py-1.5">
-            CortexWeave™ Bio-Adaptive Shirt ₹8,499 Introductory •
-            Free shipping above ₹2,999
+            CortexWeave™ Bio-Adaptive Shirt ₹8,499 Introductory • Free shipping above ₹2,999
           </div>
 
           <div className="sm:hidden whitespace-nowrap animate-[marquee_18s_linear_infinite] py-1.5">
-            &nbsp;&nbsp;CortexWeave™ t'S@₹8,499 • Free shipping above ₹2,999
+            &nbsp;&nbsp;CortexWeave™ Bio-Adaptive Shirt ₹8,499 • Free shipping above ₹2,999
           </div>
 
         </div>
@@ -198,7 +205,9 @@ const Navbar = () => {
                 animate={{ x: 0 }}
                 exit={{ x: "-100%" }}
                 transition={{ duration: 0.25 }}
-                className="fixed top-0 left-0 bottom-0 w-[80%] bg-white z-40 lg:hidden pt-24 px-6"
+                className={`fixed top-0 left-0 bottom-0 w-[80%] z-40 lg:hidden pt-24 px-6 ${
+                  isCortex ? "bg-[#070812] text-white" : "bg-white"
+                }`}
               >
 
                 <ul className="flex flex-col gap-8">
@@ -226,7 +235,13 @@ const Navbar = () => {
       </header>
 
       {/* MOBILE BOTTOM NAV */}
-      <div className="fixed bottom-0 left-0 right-0 sm:hidden bg-background/95 backdrop-blur-xl border-t border-foreground/[0.05] z-50">
+      <div
+        className={`fixed bottom-0 left-0 right-0 sm:hidden backdrop-blur-xl border-t z-50 ${
+          isCortex
+            ? "bg-[#070812]/95 border-white/10 text-white"
+            : "bg-background/95 border-foreground/[0.05]"
+        }`}
+      >
 
         <div className="grid grid-cols-5 h-[56px]">
 
