@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import {
   ArrowRight,
   Truck,
@@ -15,12 +15,35 @@ import video_homepage from "@/assets/video_homepage.mp4";
 
 import { useRef, useState } from "react";
 
-const fadeUp = {
+/* BASIC FADE ANIMATION */
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: (i: number = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, delay: i * 0.12 },
+    transition: {
+      duration: 0.6,
+      delay: i * 0.12,
+    },
+  }),
+};
+
+/* PREMIUM BLUR REVEAL */
+const blurReveal: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 30,
+    filter: "blur(20px)",
+  },
+  visible: (i: number = 0) => ({
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.9,
+      delay: i * 0.15,
+      ease: "easeOut",
+    },
   }),
 };
 
@@ -34,9 +57,8 @@ const HomePage = () => {
   const toggleMusic = () => {
     if (!audioRef.current) return;
 
-    if (playing) {
-      audioRef.current.pause();
-    } else {
+    if (playing) audioRef.current.pause();
+    else {
       audioRef.current.volume = 0.2;
       audioRef.current.play();
     }
@@ -81,56 +103,89 @@ const HomePage = () => {
           <motion.div
             initial="hidden"
             animate="visible"
-            variants={fadeUp}
             className="max-w-md sm:max-w-xl text-white"
           >
 
+            {/* TAGLINE */}
             <motion.p
               variants={fadeUp}
               custom={0}
-              className="text-[10px] tracking-[0.25em] uppercase text-white/70 mb-3"
+              className="text-[11px] tracking-[0.28em] uppercase text-[#7C6CFF] mb-4"
             >
-              BLINDBEAR COLLECTION
+              BlindBear × CortexWeave™ — 2025
             </motion.p>
 
+            {/* HEADLINE */}
             <motion.h1
-              variants={fadeUp}
-              custom={1}
-              className="text-4xl sm:text-6xl lg:text-7xl font-light leading-[1.05] mb-5"
+              initial="hidden"
+              animate="visible"
+              variants={blurReveal}
+              className="font-[Playfair_Display] text-5xl sm:text-6xl lg:text-7xl leading-[1.05] mb-6"
             >
-              BlindBear
-              <br />
-              <span className="italic">Quality Clothes</span>
+              <motion.span variants={blurReveal} custom={1} className="block">
+                The shirt that
+              </motion.span>
+
+              <motion.span
+                variants={blurReveal}
+                custom={2}
+                className="block italic text-white/90"
+              >
+                reads your stress.
+              </motion.span>
             </motion.h1>
 
+            {/* STORY TEXT */}
             <motion.p
-              variants={fadeUp}
-              custom={2}
-              className="text-white/75 text-sm mb-8 max-w-sm"
+              initial="hidden"
+              animate="visible"
+              variants={blurReveal}
+              custom={3}
+              className="text-white/75 text-sm mb-10 max-w-md leading-relaxed font-light"
             >
-              Since 2026.
+              Your body broadcasts stress in chemistry — cortisol — every
+              single day. CortexWeave is the first fabric that listens.
+              No app. No chip. No battery. Pure science woven into premium
+              Indian cotton.
             </motion.p>
 
+            {/* BUTTON AREA */}
             <motion.div
               variants={fadeUp}
-              custom={3}
-              className="flex gap-3 flex-wrap"
+              custom={4}
+              className="flex flex-col items-start gap-4"
             >
 
+              {/* MAIN BUTTON */}
               <Link
-                to="/products?gender=men"
-                className="inline-flex items-center gap-2 bg-white text-black px-7 py-3 text-xs uppercase tracking-wider hover:bg-white/90 transition"
+                to="/cortexweave"
+                className="inline-flex items-center gap-2 
+                backdrop-blur-md bg-white/20 border border-white/30
+                text-white px-8 py-3 text-xs uppercase tracking-[0.18em]
+                hover:bg-white/30 transition"
               >
-                Explore Men
+                Shop CortexWeave™
                 <ArrowRight size={14} />
               </Link>
 
-              <Link
-                to="/products?gender=women"
-                className="border border-white/30 text-white px-7 py-3 text-xs uppercase tracking-wider hover:bg-white/10 transition"
-              >
-                Explore Women
-              </Link>
+              {/* MEN WOMEN BUTTONS */}
+              <div className="flex gap-3">
+
+                <Link
+                  to="/products?gender=men"
+                  className="border border-white/30 text-white px-6 py-2.5 text-xs uppercase tracking-wider hover:bg-white/10 transition"
+                >
+                  Explore Men
+                </Link>
+
+                <Link
+                  to="/products?gender=women"
+                  className="border border-white/30 text-white px-6 py-2.5 text-xs uppercase tracking-wider hover:bg-white/10 transition"
+                >
+                  Explore Women
+                </Link>
+
+              </div>
 
             </motion.div>
 
@@ -185,11 +240,7 @@ const HomePage = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10">
 
           {featuredProducts.map((product, i) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              index={i}
-            />
+            <ProductCard key={product.id} product={product} index={i} />
           ))}
 
         </div>
@@ -219,12 +270,7 @@ const HomePage = () => {
               key={product.id}
               className="flex-shrink-0 w-[55vw] sm:w-56 md:w-64 snap-start"
             >
-
-              <ProductCard
-                product={product}
-                index={i}
-              />
-
+              <ProductCard product={product} index={i} />
             </div>
 
           ))}

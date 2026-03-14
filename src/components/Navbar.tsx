@@ -21,6 +21,7 @@ const navLinks = [
   { label: "Home", to: "/" },
   { label: "Men", to: "/products?gender=men" },
   { label: "Women", to: "/products?gender=women" },
+  { label: "CortexWeave™", to: "/cortexweave" },
   { label: "New Arrivals", to: "/products?filter=new" },
   { label: "Our Story", to: "/our-story" },
   { label: "Sale", to: "/products?filter=sale" },
@@ -36,29 +37,18 @@ const Navbar = () => {
 
   const location = useLocation();
 
-  /* Scroll detection */
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 30);
     window.addEventListener("scroll", handler);
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
-  /* Close menu when route changes */
   useEffect(() => {
     setMobileOpen(false);
     setSearchOpen(false);
   }, [location.pathname]);
 
-  /* Scroll page to top when navigating */
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  }, [location]);
-
-  /* Active nav detection */
-  const isActive = (link) => {
+  const isActive = (link: any) => {
     const currentUrl = location.pathname + location.search;
 
     if (link.to === "/") {
@@ -69,9 +59,12 @@ const Navbar = () => {
   };
 
   const isHome = location.pathname === "/";
+  const isCortex = location.pathname === "/cortexweave";
 
   const navBg =
-    scrolled || !isHome
+    isCortex
+      ? "bg-[#070812] backdrop-blur-xl border-b border-white/5 text-white"
+      : scrolled || !isHome
       ? "bg-background/90 backdrop-blur-xl border-b border-foreground/[0.05]"
       : "bg-transparent";
 
@@ -79,9 +72,18 @@ const Navbar = () => {
     <>
       <header className="fixed top-0 left-0 right-0 z-50">
 
-        {/* Announcement */}
-        <div className="bg-foreground text-background text-center text-[9px] sm:text-[10px] py-1.5 tracking-[0.18em] uppercase">
-          Free shipping above ₹1999 · Made in India · Easy Returns
+        {/* MOBILE MARQUEE ANNOUNCEMENT */}
+        <div className="bg-black text-white text-[10px] tracking-[0.2em] uppercase overflow-hidden">
+
+          <div className="hidden sm:block text-center py-1.5">
+            CortexWeave™ Bio-Adaptive Shirt ₹8,499 Introductory •
+            Free shipping above ₹2,999
+          </div>
+
+          <div className="sm:hidden whitespace-nowrap animate-[marquee_18s_linear_infinite] py-1.5">
+            &nbsp;&nbsp;CortexWeave™ t'S@₹8,499 • Free shipping above ₹2,999
+          </div>
+
         </div>
 
         {/* NAVBAR */}
@@ -101,15 +103,12 @@ const Navbar = () => {
               to="/"
               className="absolute left-1/2 -translate-x-1/2 lg:relative lg:left-0 lg:translate-x-0"
             >
-              <img
-                src={logoLight}
-                alt="BLINDBEAR"
-                className="h-10 sm:h-12"
-              />
+              <img src={logoLight} alt="BLINDBEAR" className="h-10 sm:h-12" />
             </Link>
 
             {/* DESKTOP NAV */}
             <ul className="hidden lg:flex items-center gap-10">
+
               {navLinks.map((link) => {
                 const active = isActive(link);
 
@@ -119,20 +118,31 @@ const Navbar = () => {
                     <Link
                       to={link.to}
                       className={`text-[12px] uppercase tracking-[0.14em] pb-1
-                      ${active
-                        ? "text-foreground"
-                        : "text-foreground/60 hover:text-foreground"}`}
+                      ${
+                        active
+                          ? isCortex
+                            ? "text-white"
+                            : "text-foreground"
+                          : isCortex
+                          ? "text-white/60 hover:text-white"
+                          : "text-foreground/60 hover:text-foreground"
+                      }`}
                     >
                       {link.label}
                     </Link>
 
                     {active && (
-                      <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-foreground"/>
+                      <span
+                        className={`absolute left-0 -bottom-1 w-full h-[2px] ${
+                          isCortex ? "bg-white" : "bg-foreground"
+                        }`}
+                      />
                     )}
 
                   </li>
                 );
               })}
+
             </ul>
 
             {/* RIGHT ICONS */}
@@ -145,10 +155,7 @@ const Navbar = () => {
                 <Search size={18} />
               </button>
 
-              <Link
-                to="/wishlist"
-                className="relative p-2 hidden sm:flex"
-              >
+              <Link to="/wishlist" className="relative p-2 hidden sm:flex">
                 <Heart size={18} />
                 {wishlistCount > 0 && (
                   <span className="absolute top-0 right-0 bg-foreground text-background text-[8px] rounded-full w-4 h-4 flex items-center justify-center">
@@ -166,35 +173,13 @@ const Navbar = () => {
                 )}
               </Link>
 
-              <Link
-                to="/login"
-                className="hidden sm:flex p-2"
-              >
+              <Link to="/login" className="hidden sm:flex p-2">
                 <User size={18} />
               </Link>
 
             </div>
           </div>
         </nav>
-
-        {/* SEARCH */}
-        <AnimatePresence>
-          {searchOpen && (
-            <motion.div
-              initial={{ height: 0 }}
-              animate={{ height: "auto" }}
-              exit={{ height: 0 }}
-              className="bg-background border-b border-foreground/[0.05]"
-            >
-              <div className="container py-3">
-                <input
-                  placeholder="Search products..."
-                  className="w-full border-b border-foreground/20 bg-transparent py-2 outline-none"
-                />
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
 
         {/* MOBILE MENU */}
         <AnimatePresence>
@@ -205,15 +190,15 @@ const Navbar = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setMobileOpen(false)}
-                className="fixed inset-0 bg-black/30 backdrop-blur-sm z-30 lg:hidden"
+                className="fixed inset-0 bg-black/40 backdrop-blur-sm z-30 lg:hidden"
               />
 
               <motion.div
                 initial={{ x: "-100%" }}
                 animate={{ x: 0 }}
                 exit={{ x: "-100%" }}
-                transition={{ duration: 0.22 }}
-                className="fixed top-0 left-0 bottom-0 w-[85%] bg-background z-40 lg:hidden pt-24 px-6"
+                transition={{ duration: 0.25 }}
+                className="fixed top-0 left-0 bottom-0 w-[80%] bg-white z-40 lg:hidden pt-24 px-6"
               >
 
                 <ul className="flex flex-col gap-8">
@@ -223,10 +208,10 @@ const Navbar = () => {
                       <Link
                         to={link.to}
                         onClick={() => setMobileOpen(false)}
-                        className="flex items-center justify-between text-2xl font-medium"
+                        className="flex items-center justify-between text-xl font-medium"
                       >
                         {link.label}
-                        <span className="text-lg opacity-50">›</span>
+                        <span className="opacity-50">›</span>
                       </Link>
                     </li>
                   ))}
