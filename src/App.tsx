@@ -24,20 +24,21 @@ import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
 
-/* PAGE WRAPPER (fixes background issue) */
+
+// PAGE LAYOUT WRAPPER
 const PageLayout = () => {
   const location = useLocation();
   const isCortex = location.pathname === "/cortexweave";
 
   return (
-    <>
+    <div
+      className={`min-h-screen ${
+        isCortex ? "bg-[#070812] text-white" : "bg-background"
+      }`}
+    >
       <Navbar />
 
-      <main
-        className={`min-h-screen ${
-          isCortex ? "bg-[#070812]" : "bg-background"
-        }`}
-      >
+      <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/products" element={<ProductsPage />} />
@@ -48,18 +49,16 @@ const PageLayout = () => {
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/our-story" element={<OurStoryPage />} />
           <Route path="/contact" element={<ContactPage />} />
-
-          {/* CortexWeave Page */}
           <Route path="/cortexweave" element={<CortexWeavePage />} />
-
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
 
       <Footer />
-    </>
+    </div>
   );
 };
+
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
