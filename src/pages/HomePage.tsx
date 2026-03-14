@@ -112,7 +112,7 @@ const HomePage = () => {
               custom={0}
               className="text-[11px] tracking-[0.28em] uppercase text-[#7C6CFF] mb-4"
             >
-              BlindBear × CortexWeave™ — 2025
+              BlindBear × CortexWeave™ — 2026
             </motion.p>
 
             {/* HEADLINE */}
