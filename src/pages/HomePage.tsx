@@ -12,6 +12,7 @@ import {
 import ProductCard from "@/components/ProductCard";
 import { products } from "@/data/products";
 import video_homepage from "@/assets/video_homepage.mp4";
+import cortexLogo from "@/assets/13.png";
 
 import { useRef, useState } from "react";
 
@@ -106,48 +107,34 @@ const HomePage = () => {
             className="max-w-md sm:max-w-xl text-white"
           >
 
-            {/* TAGLINE */}
-            <motion.p
+            {/* TAG IMAGE */}
+            <motion.img
               variants={fadeUp}
               custom={0}
-              className="text-[11px] tracking-[0.28em] uppercase text-[#7C6CFF] mb-4"
-            >
-              BlindBear × CortexWeave™ — 2025
-            </motion.p>
+              src={cortexLogo}
+              alt="CortexWeave"
+              className="w-[260px] sm:w-[340px] lg:w-[420px] mb-8 opacity-95"
+            />
 
             {/* HEADLINE */}
             <motion.h1
-              initial="hidden"
-              animate="visible"
-              variants={blurReveal}
-              className="font-[Playfair_Display] text-5xl sm:text-6xl lg:text-7xl leading-[1.05] mb-6"
-            >
-              <motion.span variants={blurReveal} custom={1} className="block">
-                The shirt that
-              </motion.span>
+  initial="hidden"
+  animate="visible"
+  variants={blurReveal}
+  className="font-[Playfair_Display] text-5xl sm:text-6xl lg:text-7xl leading-[1.1] mb-10"
+>
+  <motion.span variants={blurReveal} custom={1} className="block">
+    BlindBear
+  </motion.span>
 
-              <motion.span
-                variants={blurReveal}
-                custom={2}
-                className="block italic text-white/90"
-              >
-                reads your stress.
-              </motion.span>
-            </motion.h1>
-
-            {/* STORY TEXT */}
-            <motion.p
-              initial="hidden"
-              animate="visible"
-              variants={blurReveal}
-              custom={3}
-              className="text-white/75 text-sm mb-10 max-w-md leading-relaxed font-light"
-            >
-              Your body broadcasts stress in chemistry — cortisol — every
-              single day. CortexWeave is the first fabric that listens.
-              No app. No chip. No battery. Pure science woven into premium
-              Indian cotton.
-            </motion.p>
+  <motion.span
+    variants={blurReveal}
+    custom={2}
+    className="block italic text-white/90 text-2xl sm:text-3xl lg:text-4xl"
+  >
+    High Quality, Minimalistic Clothing
+  </motion.span>
+</motion.h1>
 
             {/* BUTTON AREA */}
             <motion.div
@@ -156,13 +143,13 @@ const HomePage = () => {
               className="flex flex-col items-start gap-4"
             >
 
-              {/* MAIN BUTTON */}
+              {/* SHOP BUTTON */}
               <Link
                 to="/cortexweave"
-                className="inline-flex items-center gap-2 
-                backdrop-blur-md bg-white/20 border border-white/30
+                className="inline-flex items-center gap-2
+                border border-[#7C6CFF]
                 text-white px-8 py-3 text-xs uppercase tracking-[0.18em]
-                hover:bg-white/30 transition"
+                hover:bg-[#7C6CFF]/20 transition"
               >
                 Shop CortexWeave™
                 <ArrowRight size={14} />
@@ -173,14 +160,18 @@ const HomePage = () => {
 
                 <Link
                   to="/products?gender=men"
-                  className="border border-white/30 text-white px-6 py-2.5 text-xs uppercase tracking-wider hover:bg-white/10 transition"
+                  className="backdrop-blur-md bg-white/10 border border-white/30
+                  text-white px-6 py-2.5 text-xs uppercase tracking-wider
+                  hover:bg-white/20 transition"
                 >
                   Explore Men
                 </Link>
 
                 <Link
                   to="/products?gender=women"
-                  className="border border-white/30 text-white px-6 py-2.5 text-xs uppercase tracking-wider hover:bg-white/10 transition"
+                  className="backdrop-blur-md bg-white/10 border border-white/30
+                  text-white px-6 py-2.5 text-xs uppercase tracking-wider
+                  hover:bg-white/20 transition"
                 >
                   Explore Women
                 </Link>

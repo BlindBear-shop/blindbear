@@ -36,42 +36,80 @@ const CortexWeavePage = () => {
         <div className="h-full w-full bg-[linear-gradient(#ffffff22_1px,transparent_1px),linear-gradient(90deg,#ffffff22_1px,transparent_1px)] bg-[size:40px_40px]" />
       </div>
 
-
       {/* HERO */}
-      <section className="container pt-28 sm:pt-32 pb-20 sm:pb-28">
+      <section className="container pt-24 sm:pt-32 pb-16 sm:pb-20">
 
-        <motion.p
-          custom={0}
-          initial="hidden"
-          animate="visible"
-          variants={blurReveal}
-          className="text-[10px] sm:text-[11px] tracking-[0.35em] uppercase text-[#7C6CFF] mb-6"
-        >
-          BlindBear × CortexWeave
-        </motion.p>
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
 
-        <motion.h1
-          custom={1}
-          initial="hidden"
-          animate="visible"
-          variants={blurReveal}
-          className="text-4xl sm:text-6xl lg:text-7xl font-light leading-tight max-w-4xl"
-        >
-          Premium Indian fashion.
-          <br />
-          Now with a story
-          <br />
-          no one else can tell.
-        </motion.h1>
+          {/* TEXT */}
+          <div>
+
+            <motion.p
+              custom={0}
+              initial="hidden"
+              animate="visible"
+              variants={blurReveal}
+              className="text-[11px] tracking-[0.35em] uppercase text-[#7C6CFF] mb-6"
+            >
+              BLINDBEAR × CORTEXWEAVE™ — 2025
+            </motion.p>
+
+            <motion.h1
+              custom={1}
+              initial="hidden"
+              animate="visible"
+              variants={blurReveal}
+              className="text-4xl sm:text-6xl lg:text-7xl font-light leading-tight"
+            >
+              The shirt that
+              <br />
+              <span className="text-[#8b6cff] italic">
+                reads your stress.
+              </span>
+            </motion.h1>
+
+            <motion.p
+              custom={2}
+              initial="hidden"
+              animate="visible"
+              variants={blurReveal}
+              className="text-white/60 mt-8 max-w-xl text-sm sm:text-base leading-relaxed"
+            >
+              Your body broadcasts stress in chemistry — cortisol —
+              every single day. CortexWeave is the first fabric that listens.
+              No app. No chip. No battery. Pure science woven into premium
+              Indian cotton.
+            </motion.p>
+
+          </div>
+
+          {/* IMAGE */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1 }}
+            className="flex justify-center"
+          >
+            <motion.img
+              src={cortexDiagram}
+              className="w-full max-w-[320px] sm:max-w-md lg:max-w-xl opacity-90"
+              animate={{ y: [0, -12, 0] }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+          </motion.div>
+
+        </div>
 
       </section>
 
 
+      {/* STORY + TECH */}
+      <section className="container grid lg:grid-cols-2 gap-12 pb-16 lg:pb-20">
 
-      {/* STORY + TECH SECTION */}
-      <section className="container grid lg:grid-cols-2 gap-12 lg:gap-16 pb-20 lg:pb-28">
-
-        {/* TEXT */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -80,21 +118,21 @@ const CortexWeavePage = () => {
           className="space-y-6 text-white/70 leading-relaxed max-w-xl"
         >
 
-          <p className="text-sm sm:text-base">
-            BlindBear was built on a single belief:{" "}
-            <b className="text-white">Indian fashion deserves to be world-class.</b>
+          <p>
+            BlindBear was built on a single belief:
+            <b className="text-white"> Indian fashion deserves to be world-class.</b>
             Not aspirationally world-class. Actually world-class —
             in quality, in design, and now in innovation.
           </p>
 
-          <p className="text-sm sm:text-base">
+          <p>
             CortexWeave is not a collaboration or a licensed technology.
-            It is BlindBear’s own invention — a fabric developed from the
-            ground up, built on molecularly imprinted polymer chemistry
+            It is BlindBear’s own invention — a fabric developed from
+            the ground up, built on molecularly imprinted polymer chemistry
             never before applied to wearable clothing.
           </p>
 
-          <p className="text-sm sm:text-base">
+          <p>
             This is not smart clothing. Smart clothing has batteries.
             This is something older and more interesting:
             <b className="text-white"> fabric that behaves like biology.</b>
@@ -104,7 +142,7 @@ const CortexWeavePage = () => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="border-l-4 border-[#7C6CFF] pl-5 mt-6 italic text-lg sm:text-xl text-white"
+            className="border-l-4 border-[#7C6CFF] pl-5 mt-6 italic text-lg text-white"
           >
             "Every other brand puts technology inside clothes.
             We made the fabric itself the technology."
@@ -153,36 +191,13 @@ const CortexWeavePage = () => {
       </section>
 
 
-
-      {/* DIAGRAM SECTION */}
-      <section className="container py-16 sm:py-24 text-center">
-
-        <h3 className="text-2xl sm:text-3xl font-light mb-10">
-          Stress-response zones
-        </h3>
-
-        <motion.img
-          src={cortexDiagram}
-          className="mx-auto w-full max-w-[320px] sm:max-w-md lg:max-w-xl opacity-90"
-          animate={{ y: [0, -12, 0] }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-
-      </section>
-
-
-
-      {/* SCIENCE SECTION */}
-      <section className="container py-20 lg:py-28">
+      {/* CLINICAL SECTION */}
+      <section className="container pt-10 pb-20 lg:pt-12 lg:pb-24">
 
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          className="text-[10px] sm:text-[11px] tracking-[0.3em] uppercase text-[#7C6CFF] mb-6"
+          className="text-[11px] tracking-[0.3em] uppercase text-[#7C6CFF] mb-6"
         >
           Clinical Backing
         </motion.p>
@@ -196,7 +211,7 @@ const CortexWeavePage = () => {
           Three pathways. All proven.
         </motion.h2>
 
-        <p className="text-white/60 max-w-xl mb-14 text-sm sm:text-base">
+        <p className="text-white/60 max-w-xl mb-12">
           Each mechanism is backed by independent peer-reviewed research.
           CortexWeave does not ask you to trust us. It asks you to trust
           the science.
