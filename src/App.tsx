@@ -25,7 +25,7 @@ import LoginPage from "@/pages/LoginPage";
 import AdminPage from "@/pages/AdminPage";
 import OurStoryPage from "@/pages/OurStoryPage";
 import ContactsPage from "@/pages/ContactsPage";
-import CortexWeavePage from "@/pages/CortexWeavePage";
+// import CortexWeavePage from "@/pages/CortexWeavePage";
 import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -67,7 +67,7 @@ const PageLayout = () => {
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/our-story" element={<OurStoryPage />} />
           <Route path="/contact" element={<ContactsPage />} />
-          <Route path="/cortexweave" element={<CortexWeavePage />} />
+          {/* <Route path="/cortexweave" element={<CortexWeavePage />} /> */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
