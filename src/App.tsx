@@ -12,6 +12,7 @@ import {
 import { CartProvider } from "@/contexts/CartContext";
 import { WishlistProvider } from "@/contexts/WishlistContext";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -95,6 +96,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <Analytics />
+          <SpeedInsights />
 
         </WishlistProvider>
       </CartProvider>
