@@ -21,10 +21,13 @@ const navLinks = [
   { label: "Home", to: "/" },
   { label: "Men", to: "/products?gender=men" },
   { label: "Women", to: "/products?gender=women" },
-  { label: "CortexWeave™", to: "/cortexweave" },
+
+  // ❌ CortexWeave removed
+  // { label: "CortexWeave™", to: "/cortexweave" },
+
   { label: "New Arrivals", to: "/products?filter=new" },
   { label: "Our Story", to: "/our-story" },
-  { label: "Contact", to: "/contact" }, // ✅ UPDATED
+  { label: "Contact", to: "/contact" },
 ];
 
 const Navbar = () => {
