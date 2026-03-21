@@ -21,10 +21,6 @@ const navLinks = [
   { label: "Home", to: "/" },
   { label: "Men", to: "/products?gender=men" },
   { label: "Women", to: "/products?gender=women" },
-
-  // ❌ CortexWeave removed
-  // { label: "CortexWeave™", to: "/cortexweave" },
-
   { label: "New Arrivals", to: "/products?filter=new" },
   { label: "Our Story", to: "/our-story" },
   { label: "Contact", to: "/contact" },
@@ -52,14 +48,12 @@ const Navbar = () => {
   }, [location.pathname]);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0 });
   }, [location.pathname]);
 
-  const isActive = (link: any) => {
+  const isActive = (link) => {
     const currentUrl = location.pathname + location.search;
-
     if (link.to === "/") return location.pathname === "/";
-
     return currentUrl === link.to;
   };
 
@@ -70,14 +64,13 @@ const Navbar = () => {
     isCortex
       ? "bg-[#070812] backdrop-blur-xl border-b border-white/5 text-white"
       : scrolled || !isHome
-      ? "lg:bg-transparent lg:backdrop-blur-none bg-background/90 backdrop-blur-xl border-b border-foreground/[0.05]"
+      ? "bg-background/90 backdrop-blur-xl border-b border-foreground/[0.05]"
       : "bg-transparent";
 
   return (
     <>
-      
-
-
+      {/* HEADER */}
+      <header className="fixed top-0 left-0 right-0 z-50">
         {/* NAVBAR */}
         <nav className={`transition-all duration-300 ${navBg}`}>
           <div className="container flex items-center justify-between h-14 sm:h-16">
@@ -108,15 +101,15 @@ const Navbar = () => {
                     <Link
                       to={link.to}
                       className={`text-[12px] uppercase tracking-[0.14em] pb-1
-                      ${
-                        active
-                          ? isCortex
-                            ? "text-white"
-                            : "text-foreground"
-                          : isCortex
-                          ? "text-white/60 hover:text-white"
-                          : "text-foreground/60 hover:text-foreground"
-                      }`}
+                        ${
+                          active
+                            ? isCortex
+                              ? "text-white"
+                              : "text-foreground"
+                            : isCortex
+                            ? "text-white/60 hover:text-white"
+                            : "text-foreground/60 hover:text-foreground"
+                        }`}
                     >
                       {link.label}
                     </Link>
@@ -206,13 +199,11 @@ const Navbar = () => {
             </>
           )}
         </AnimatePresence>
-
       </header>
 
       {/* MOBILE BOTTOM NAV */}
       <div className="fixed bottom-0 left-0 right-0 sm:hidden bg-background/95 backdrop-blur-xl border-t z-50">
         <div className="grid grid-cols-5 h-[56px]">
-
           {[
             { icon: Home, label: "Home", to: "/" },
             { icon: Grid3X3, label: "Shop", to: "/products" },
@@ -236,7 +227,6 @@ const Navbar = () => {
               <span>{label}</span>
             </Link>
           ))}
-
         </div>
       </div>
     </>
