@@ -77,16 +77,6 @@ const Navbar = () => {
     <>
       <header className="fixed top-0 left-0 right-0 z-50">
 
-        {/* ANNOUNCEMENT */}
-        <div className="bg-black text-white text-[10px] tracking-[0.2em] uppercase overflow-hidden">
-          <div className="hidden sm:block text-center py-1.5">
-            • CortexWeave™ Bio-Adaptive Shirt @₹8,499 Introductory •
-          </div>
-
-          <div className="sm:hidden whitespace-nowrap animate-[marquee_18s_linear_infinite] py-1.5">
-            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;• CortexWeave™ Bio-Adaptive Shirt @₹8,499  •
-          </div>
-        </div>
 
         {/* NAVBAR */}
         <nav className={`transition-all duration-300 ${navBg}`}>
