@@ -28,7 +28,6 @@ const navLinks = [
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   const { totalItems } = useCart();
@@ -44,7 +43,6 @@ const Navbar = () => {
 
   useEffect(() => {
     setMobileOpen(false);
-    setSearchOpen(false);
   }, [location.pathname]);
 
   const isActive = (link: any) => {
@@ -53,21 +51,17 @@ const Navbar = () => {
     return currentUrl === link.to;
   };
 
-  const isHome = location.pathname === "/";
   const isCortex = location.pathname === "/cortexweave";
 
-  // ✅ FIX: Transparent ONLY on desktop home
+  // ✅ FINAL LOGIC
   const navBg = isCortex
     ? "bg-[#070812] text-white"
-    : scrolled || !isHome
-    ? "bg-background/90 backdrop-blur-xl border-b border-foreground/[0.05]"
-    : "bg-transparent";
+    : "bg-transparent lg:bg-transparent bg-background/95 backdrop-blur-xl lg:backdrop-blur-0";
 
   return (
     <>
       {/* HEADER */}
       <header className="fixed top-0 left-0 right-0 z-50">
-        {/* NAVBAR */}
         <nav className={`transition-all duration-300 ${navBg}`}>
           <div className="container flex items-center justify-between h-14 sm:h-16">
 
@@ -99,23 +93,15 @@ const Navbar = () => {
                       className={`text-[12px] uppercase tracking-[0.14em] pb-1
                         ${
                           active
-                            ? isCortex
-                              ? "text-white"
-                              : "text-foreground"
-                            : isCortex
-                            ? "text-white/60 hover:text-white"
-                            : "text-foreground/60 hover:text-foreground"
+                            ? "text-white"
+                            : "text-white/70 hover:text-white"
                         }`}
                     >
                       {link.label}
                     </Link>
 
                     {active && (
-                      <span
-                        className={`absolute left-0 -bottom-1 w-full h-[2px] ${
-                          isCortex ? "bg-white" : "bg-foreground"
-                        }`}
-                      />
+                      <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-white" />
                     )}
                   </li>
                 );
@@ -123,18 +109,13 @@ const Navbar = () => {
             </ul>
 
             {/* RIGHT ICONS */}
-            <div className="flex items-center gap-1">
-              <button
-                onClick={() => setSearchOpen(!searchOpen)}
-                className="p-2"
-              >
-                <Search size={18} />
-              </button>
+            <div className="flex items-center gap-1 text-white">
+              <Search size={18} className="cursor-pointer" />
 
               <Link to="/wishlist" className="relative p-2 hidden sm:flex">
                 <Heart size={18} />
                 {wishlistCount > 0 && (
-                  <span className="absolute top-0 right-0 bg-foreground text-background text-[8px] rounded-full w-4 h-4 flex items-center justify-center">
+                  <span className="absolute top-0 right-0 bg-white text-black text-[8px] rounded-full w-4 h-4 flex items-center justify-center">
                     {wishlistCount}
                   </span>
                 )}
@@ -143,7 +124,7 @@ const Navbar = () => {
               <Link to="/cart" className="relative p-2">
                 <ShoppingBag size={18} />
                 {totalItems > 0 && (
-                  <span className="absolute top-0 right-0 bg-foreground text-background text-[8px] rounded-full w-4 h-4 flex items-center justify-center">
+                  <span className="absolute top-0 right-0 bg-white text-black text-[8px] rounded-full w-4 h-4 flex items-center justify-center">
                     {totalItems}
                   </span>
                 )}
@@ -173,11 +154,9 @@ const Navbar = () => {
                 animate={{ x: 0 }}
                 exit={{ x: "-100%" }}
                 transition={{ duration: 0.25 }}
-                className={`fixed top-0 left-0 bottom-0 w-[80%] z-40 lg:hidden pt-20 px-6 ${
-                  isCortex ? "bg-[#070812] text-white" : "bg-white"
-                }`}
+                className="fixed top-0 left-0 bottom-0 w-[80%] z-40 lg:hidden pt-20 px-6 bg-white"
               >
-                {/* ✅ CLOSE BUTTON INSIDE PANEL */}
+                {/* CLOSE BUTTON */}
                 <div className="flex justify-end mb-6">
                   <button onClick={() => setMobileOpen(false)}>
                     <X size={24} />
