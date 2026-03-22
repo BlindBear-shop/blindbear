@@ -47,11 +47,7 @@ const Navbar = () => {
     setSearchOpen(false);
   }, [location.pathname]);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0 });
-  }, [location.pathname]);
-
-  const isActive = (link) => {
+  const isActive = (link: any) => {
     const currentUrl = location.pathname + location.search;
     if (link.to === "/") return location.pathname === "/";
     return currentUrl === link.to;
@@ -60,12 +56,12 @@ const Navbar = () => {
   const isHome = location.pathname === "/";
   const isCortex = location.pathname === "/cortexweave";
 
-  const navBg =
-    isCortex
-      ? "bg-[#070812] backdrop-blur-xl border-b border-white/5 text-white"
-      : scrolled || !isHome
-      ? "bg-background/90 backdrop-blur-xl border-b border-foreground/[0.05]"
-      : "bg-transparent";
+  // ✅ FIX: Transparent ONLY on desktop home
+  const navBg = isCortex
+    ? "bg-[#070812] text-white"
+    : scrolled || !isHome
+    ? "bg-background/90 backdrop-blur-xl border-b border-foreground/[0.05]"
+    : "bg-transparent";
 
   return (
     <>
@@ -80,7 +76,7 @@ const Navbar = () => {
               className="lg:hidden p-2"
               onClick={() => setMobileOpen(!mobileOpen)}
             >
-              {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+              <Menu size={22} />
             </button>
 
             {/* LOGO */}
@@ -177,10 +173,17 @@ const Navbar = () => {
                 animate={{ x: 0 }}
                 exit={{ x: "-100%" }}
                 transition={{ duration: 0.25 }}
-                className={`fixed top-0 left-0 bottom-0 w-[80%] z-40 lg:hidden pt-24 px-6 ${
+                className={`fixed top-0 left-0 bottom-0 w-[80%] z-40 lg:hidden pt-20 px-6 ${
                   isCortex ? "bg-[#070812] text-white" : "bg-white"
                 }`}
               >
+                {/* ✅ CLOSE BUTTON INSIDE PANEL */}
+                <div className="flex justify-end mb-6">
+                  <button onClick={() => setMobileOpen(false)}>
+                    <X size={24} />
+                  </button>
+                </div>
+
                 <ul className="flex flex-col gap-8">
                   {navLinks.map((link) => (
                     <li key={link.label}>
