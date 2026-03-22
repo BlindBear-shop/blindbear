@@ -67,7 +67,7 @@ const Footer = () => {
           </h4>
 
           <div className="flex flex-col gap-4 text-sm">
-            <Link className="hover:opacity-70 transition" to="/pages/ContactsPage">
+            <Link className="hover:opacity-70 transition" to="/contact">
               Contact Us
             </Link>
           </div>
