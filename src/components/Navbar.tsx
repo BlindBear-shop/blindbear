@@ -28,18 +28,11 @@ const navLinks = [
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
 
   const { totalItems } = useCart();
   const { totalItems: wishlistCount } = useWishlist();
 
   const location = useLocation();
-
-  useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 30);
-    window.addEventListener("scroll", handler);
-    return () => window.removeEventListener("scroll", handler);
-  }, []);
 
   useEffect(() => {
     setMobileOpen(false);
@@ -53,7 +46,7 @@ const Navbar = () => {
 
   const isCortex = location.pathname === "/cortexweave";
 
-  // ✅ FINAL LOGIC
+  // ✅ Transparent navbar
   const navBg = isCortex
     ? "bg-[#070812] text-white"
     : "bg-transparent lg:bg-transparent bg-background/95 backdrop-blur-xl lg:backdrop-blur-0";
@@ -67,7 +60,7 @@ const Navbar = () => {
 
             {/* MOBILE MENU BUTTON */}
             <button
-              className="lg:hidden p-2"
+              className="lg:hidden p-2 text-black"
               onClick={() => setMobileOpen(!mobileOpen)}
             >
               <Menu size={22} />
@@ -93,15 +86,15 @@ const Navbar = () => {
                       className={`text-[12px] uppercase tracking-[0.14em] pb-1
                         ${
                           active
-                            ? "text-white"
-                            : "text-white/70 hover:text-white"
+                            ? "text-black"
+                            : "text-black/60 hover:text-black"
                         }`}
                     >
                       {link.label}
                     </Link>
 
                     {active && (
-                      <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-white" />
+                      <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-black" />
                     )}
                   </li>
                 );
@@ -109,13 +102,13 @@ const Navbar = () => {
             </ul>
 
             {/* RIGHT ICONS */}
-            <div className="flex items-center gap-1 text-white">
+            <div className="flex items-center gap-1 text-black">
               <Search size={18} className="cursor-pointer" />
 
               <Link to="/wishlist" className="relative p-2 hidden sm:flex">
                 <Heart size={18} />
                 {wishlistCount > 0 && (
-                  <span className="absolute top-0 right-0 bg-white text-black text-[8px] rounded-full w-4 h-4 flex items-center justify-center">
+                  <span className="absolute top-0 right-0 bg-black text-white text-[8px] rounded-full w-4 h-4 flex items-center justify-center">
                     {wishlistCount}
                   </span>
                 )}
@@ -124,7 +117,7 @@ const Navbar = () => {
               <Link to="/cart" className="relative p-2">
                 <ShoppingBag size={18} />
                 {totalItems > 0 && (
-                  <span className="absolute top-0 right-0 bg-white text-black text-[8px] rounded-full w-4 h-4 flex items-center justify-center">
+                  <span className="absolute top-0 right-0 bg-black text-white text-[8px] rounded-full w-4 h-4 flex items-center justify-center">
                     {totalItems}
                   </span>
                 )}
@@ -154,7 +147,7 @@ const Navbar = () => {
                 animate={{ x: 0 }}
                 exit={{ x: "-100%" }}
                 transition={{ duration: 0.25 }}
-                className="fixed top-0 left-0 bottom-0 w-[80%] z-40 lg:hidden pt-20 px-6 bg-white"
+                className="fixed top-0 left-0 bottom-0 w-[80%] z-40 lg:hidden pt-20 px-6 bg-white text-black"
               >
                 {/* CLOSE BUTTON */}
                 <div className="flex justify-end mb-6">
