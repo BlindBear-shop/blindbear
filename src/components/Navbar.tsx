@@ -9,6 +9,8 @@ import {
   X,
   Home,
   Grid3X3,
+  Facebook,
+  Linkedin,
 } from "lucide-react";
 
 import { useCart } from "@/contexts/CartContext";
@@ -46,7 +48,6 @@ const Navbar = () => {
 
   const isCortex = location.pathname === "/cortexweave";
 
-  // ✅ Transparent navbar
   const navBg = isCortex
     ? "bg-[#070812] text-white"
     : "bg-transparent lg:bg-transparent bg-background/95 backdrop-blur-xl lg:backdrop-blur-0";
@@ -105,6 +106,25 @@ const Navbar = () => {
             <div className="flex items-center gap-1 text-black">
               <Search size={18} className="cursor-pointer" />
 
+              {/* SOCIAL ICONS */}
+              <a
+                href="https://www.facebook.com/share/18fcdKwktj/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 hidden sm:flex"
+              >
+                <Facebook size={18} />
+              </a>
+
+              <a
+                href="https://www.linkedin.com/in/blind-bear-9857a03b9/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 hidden sm:flex"
+              >
+                <Linkedin size={18} />
+              </a>
+
               <Link to="/wishlist" className="relative p-2 hidden sm:flex">
                 <Heart size={18} />
                 {wishlistCount > 0 && (
@@ -150,7 +170,8 @@ const Navbar = () => {
                 className="fixed top-0 left-0 bottom-0 w-[80%] z-40 lg:hidden pt-20 px-6 bg-white text-black"
               >
                 {/* CLOSE BUTTON */}
-                <div className="flex justify-end mb-6">
+                <div className="flex justify-between items-center mb-6">
+                  <span className="text-lg font-semibold">Menu</span>
                   <button onClick={() => setMobileOpen(false)}>
                     <X size={24} />
                   </button>
@@ -170,13 +191,32 @@ const Navbar = () => {
                     </li>
                   ))}
                 </ul>
+
+                {/* MOBILE SOCIAL LINKS */}
+                <div className="flex gap-6 mt-10">
+                  <a
+                    href="https://www.facebook.com/share/18fcdKwktj/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Facebook size={22} />
+                  </a>
+
+                  <a
+                    href="https://www.linkedin.com/in/blind-bear-9857a03b9/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Linkedin size={22} />
+                  </a>
+                </div>
               </motion.div>
             </>
           )}
         </AnimatePresence>
       </header>
 
-      {/* MOBILE BOTTOM NAV */}
+      {/* MOBILE BOTTOM NAV (UNCHANGED) */}
       <div className="fixed bottom-0 left-0 right-0 sm:hidden bg-background/95 backdrop-blur-xl border-t z-50">
         <div className="grid grid-cols-5 h-[56px]">
           {[
