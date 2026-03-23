@@ -6,7 +6,6 @@ import {
   RotateCcw,
   Ruler,
   ChevronDown,
-  ChevronUp,
 } from "lucide-react";
 import { products } from "@/data/products";
 import { useCart } from "@/contexts/CartContext";
@@ -29,7 +28,7 @@ const ProductDetailPage = () => {
 
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] =
-    useState(product?.colors[0]?.name || "");
+    product?.colors[0]?.name || "";
   const [quantity, setQuantity] = useState(1);
   const [expandedSection, setExpandedSection] =
     useState<string | null>("description");
@@ -86,21 +85,28 @@ const ProductDetailPage = () => {
     );
   };
 
+  // 🔥 SPLIT DESCRIPTION INTO SECTIONS
+  const sections = product.description
+    .split("\n")
+    .reduce((acc: any, line) => {
+      if (line.includes(":")) {
+        const key = line.replace(":", "").trim();
+        acc[key] = [];
+        acc.current = key;
+      } else if (line.trim() && acc.current) {
+        acc[acc.current].push(line.trim());
+      }
+      return acc;
+    }, { current: "" });
+
   return (
     <div className="pt-[90px] lg:pt-[110px] pb-14 sm:pb-0">
       {/* Breadcrumb */}
       <div className="container py-3 sm:py-4">
         <nav className="font-body text-[10px] sm:text-xs text-muted-foreground/50">
-          <Link to="/" className="hover:text-foreground/70">
-            Home
-          </Link>
+          <Link to="/">Home</Link>
           <span className="mx-1.5">/</span>
-          <Link
-            to="/products"
-            className="hover:text-foreground/70"
-          >
-            Shop
-          </Link>
+          <Link to="/products">Shop</Link>
           <span className="mx-1.5">/</span>
           <span className="text-foreground/70">
             {product.name}
@@ -111,10 +117,7 @@ const ProductDetailPage = () => {
       <div className="container pb-8">
         <div className="grid md:grid-cols-2 gap-4 sm:gap-6 lg:gap-12">
           {/* Images */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          >
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             <ImageGallery
               images={product.images}
               productName={product.name}
@@ -197,7 +200,7 @@ const ProductDetailPage = () => {
               Buy Now
             </button>
 
-            {/* ✅ EXPRESS DELIVERY */}
+            {/* WhatsApp */}
             <a
               href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi, I want express delivery for ${product.name}`}
               target="_blank"
@@ -215,9 +218,7 @@ const ProductDetailPage = () => {
               <Heart
                 size={16}
                 className={
-                  isWishlisted(product.id)
-                    ? "fill-black"
-                    : ""
+                  isWishlisted(product.id) ? "fill-black" : ""
                 }
               />
               Wishlist
@@ -226,19 +227,50 @@ const ProductDetailPage = () => {
             {/* Info */}
             <div className="text-xs text-gray-500 space-y-1">
               <p>
-                <Truck size={14} className="inline" /> Free
-                shipping above ₹1999
+                <Truck size={14} className="inline" /> Free shipping above ₹1999
               </p>
               <p>
-                <RotateCcw size={14} className="inline" /> 15-day
-                returns
+                <RotateCcw size={14} className="inline" /> 15-day returns
               </p>
               <p>
-                <Ruler size={14} className="inline" /> True to
-                size
+                <Ruler size={14} className="inline" /> True to size
               </p>
             </div>
           </motion.div>
+        </div>
+
+        {/* 🔥 ACCORDION DESCRIPTION */}
+        <div className="mt-8 border-t">
+          {Object.keys(sections)
+            .filter((key) => key !== "current")
+            .map((key) => (
+              <div key={key} className="border-b py-4">
+                <button
+                  onClick={() => toggleSection(key)}
+                  className="w-full flex justify-between items-center"
+                >
+                  <span className="font-medium text-sm">
+                    {key}
+                  </span>
+                  <ChevronDown
+                    size={16}
+                    className={`transition ${
+                      expandedSection === key
+                        ? "rotate-180"
+                        : ""
+                    }`}
+                  />
+                </button>
+
+                {expandedSection === key && (
+                  <div className="mt-3 text-sm text-gray-600 space-y-1">
+                    {sections[key].map((item: string, i: number) => (
+                      <p key={i}>{item}</p>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
         </div>
 
         {/* Related */}
