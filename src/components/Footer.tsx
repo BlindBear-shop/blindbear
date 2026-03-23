@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/11.png";
-import { Instagram } from "lucide-react";
+import { Instagram, Facebook, Linkedin } from "lucide-react";
 
 const Footer = () => {
   const location = useLocation();
@@ -34,7 +34,8 @@ const Footer = () => {
           </p>
 
           {/* SOCIALS */}
-          <div className="flex gap-4 mt-2">
+          <div className="flex flex-col gap-3 mt-2">
+            
             <a
               href="https://www.instagram.com/blindbear.official"
               target="_blank"
@@ -44,6 +45,27 @@ const Footer = () => {
               <Instagram size={18} />
               <span>Instagram</span>
             </a>
+
+            <a
+              href="https://www.facebook.com/share/18fcdKwktj/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-sm hover:opacity-70 transition"
+            >
+              <Facebook size={18} />
+              <span>Facebook</span>
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/blind-bear-9857a03b9/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-sm hover:opacity-70 transition"
+            >
+              <Linkedin size={18} />
+              <span>LinkedIn</span>
+            </a>
+
           </div>
         </div>
 
