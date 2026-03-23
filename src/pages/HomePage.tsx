@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion, Variants } from "framer-motion";
 import { Truck, RotateCcw, Shield, Volume2, VolumeX } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 
 import ProductCard from "@/components/ProductCard";
 import { products } from "@/data/products";
@@ -8,35 +9,23 @@ import video_homepage from "@/assets/video_homepage.mp4";
 
 import { useRef, useState } from "react";
 
-/* BASIC FADE ANIMATION */
+/* ANIMATIONS */
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: (i: number = 0) => ({
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.6,
-      delay: i * 0.12,
-    },
+    transition: { duration: 0.6, delay: i * 0.12 },
   }),
 };
 
-/* PREMIUM BLUR REVEAL */
 const blurReveal: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 30,
-    filter: "blur(20px)",
-  },
+  hidden: { opacity: 0, y: 30, filter: "blur(20px)" },
   visible: (i: number = 0) => ({
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
-    transition: {
-      duration: 0.9,
-      delay: i * 0.15,
-      ease: "easeOut",
-    },
+    transition: { duration: 0.9, delay: i * 0.15, ease: "easeOut" },
   }),
 };
 
@@ -60,6 +49,16 @@ const HomePage = () => {
 
   return (
     <div className="w-full overflow-x-hidden">
+
+      {/* ✅ SEO (CRITICAL) */}
+      <Helmet>
+        <title>BlindBear Shop | Gen Z Streetwear India</title>
+        <meta
+          name="description"
+          content="BlindBear is a Gen Z clothing brand built on bold everyday style and honest pricing. Real fits, real people, real affordable. Shop oversized streetwear and graphic tees in India."
+        />
+      </Helmet>
+
       {/* MUSIC */}
       <audio ref={audioRef} loop>
         <source src="/music/fashion.mp3" type="audio/mp3" />
@@ -98,7 +97,7 @@ const HomePage = () => {
             {/* HEADLINE */}
             <motion.h1
               variants={blurReveal}
-              className="font-[Playfair_Display] text-5xl sm:text-6xl lg:text-7xl leading-[1.1] mb-10"
+              className="font-[Playfair_Display] text-5xl sm:text-6xl lg:text-7xl leading-[1.1] mb-6"
             >
               <motion.span variants={blurReveal} custom={1} className="block">
                 BlindBear
@@ -109,11 +108,21 @@ const HomePage = () => {
                 custom={2}
                 className="block italic text-white/90 text-2xl sm:text-3xl lg:text-4xl"
               >
-                High Quality, Minimalistic Clothing
+                Gen Z Streetwear Brand
               </motion.span>
             </motion.h1>
 
-            {/* BUTTONS (BIGGER + PREMIUM) */}
+            {/* ✅ SEO TEXT (VERY IMPORTANT — DO NOT REMOVE) */}
+            <motion.p
+              variants={fadeUp}
+              custom={3}
+              className="text-sm sm:text-base text-white/80 mb-8 max-w-md"
+            >
+              BlindBear is a Gen Z clothing brand built on bold everyday style and honest pricing.
+              Real fits, real people, real affordable. Shop oversized streetwear and graphic tees in India.
+            </motion.p>
+
+            {/* BUTTONS */}
             <motion.div
               variants={fadeUp}
               custom={4}
