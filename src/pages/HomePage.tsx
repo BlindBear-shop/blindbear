@@ -147,7 +147,7 @@ const HomePage = () => {
           <p className="text-[10px] uppercase tracking-[0.25em] text-black/40 mb-1">
             BlindBear Clothing
           </p>
-
+      <p>BlindBear is a Gen Z clothing brand built on bold everyday style and honest pricing. Real fits, real people, real affordable.</p>
           <h2 className="text-2xl sm:text-3xl font-light">
             Our Collections
           </h2>
