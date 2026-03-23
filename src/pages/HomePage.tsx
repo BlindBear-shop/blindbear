@@ -75,21 +75,23 @@ const HomePage = () => {
 
       {/* HERO */}
       <section className="relative h-[85vh] sm:h-screen overflow-hidden w-full">
+        {/* VIDEO */}
         <video
           autoPlay
           muted
           loop
           playsInline
           preload="metadata"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover brightness-[0.8]"
         >
           <source src={video_homepage} type="video/mp4" />
         </video>
 
-        <div className="absolute inset-0 bg-black/50" />
+        {/* OVERLAY */}
+        <div className="absolute inset-0 bg-black/35" />
 
-        <div className="relative h-full flex items-end sm:items-center pb-16 sm:pb-0 px-6 sm:px-12 lg:px-20">
-
+        {/* CONTENT */}
+        <div className="relative h-full flex items-center px-6 sm:px-12 lg:px-20">
           <motion.div
             initial="hidden"
             animate="visible"
@@ -98,7 +100,7 @@ const HomePage = () => {
             {/* HEADLINE */}
             <motion.h1
               variants={blurReveal}
-              className="font-[Playfair_Display] text-5xl sm:text-6xl lg:text-7xl leading-[1.1] mb-10"
+              className="font-[Playfair_Display] text-4xl sm:text-5xl lg:text-6xl leading-[1.2] mb-6"
             >
               <motion.span variants={blurReveal} custom={1} className="block">
                 BlindBear
@@ -107,34 +109,32 @@ const HomePage = () => {
               <motion.span
                 variants={blurReveal}
                 custom={2}
-                className="block italic text-white/90 text-2xl sm:text-3xl lg:text-4xl"
+                className="block italic text-white/80 text-lg sm:text-xl lg:text-2xl mt-2"
               >
-                High Quality, Minimalistic Clothing
+                Minimal Streetwear for Everyday Expression
               </motion.span>
             </motion.h1>
 
-            {/* BUTTONS (BIGGER + PREMIUM) */}
+            {/* BUTTONS */}
             <motion.div
               variants={fadeUp}
               custom={4}
-              className="flex flex-col items-start gap-5"
+              className="flex gap-4 mt-4"
             >
               <Link
                 to="/products?gender=men"
-                className="backdrop-blur-md bg-white/20 border border-white/30
-                text-white px-10 py-4 text-sm uppercase tracking-[0.2em]
-                hover:bg-white/30 transition"
+                className="bg-white text-black px-6 py-3 text-xs uppercase tracking-[0.2em]
+                hover:bg-white/90 transition"
               >
-                Men Clothing
+                Shop Men
               </Link>
 
               <Link
                 to="/products?gender=women"
-                className="bg-transparent border border-white/50
-                text-white px-10 py-4 text-sm uppercase tracking-[0.2em]
-                hover:bg-white/10 transition"
+                className="border border-white text-white px-6 py-3 text-xs uppercase tracking-[0.2em]
+                hover:bg-white hover:text-black transition"
               >
-                Explore Women Clothing
+                Shop Women
               </Link>
             </motion.div>
           </motion.div>
@@ -145,13 +145,16 @@ const HomePage = () => {
       <section className="container py-14 sm:py-16">
         <div className="mb-8">
           <p className="text-[10px] uppercase tracking-[0.25em] text-black/40 mb-1">
-            BlindBear Clothing
+            BlindBear
           </p>
-      
+
           <h2 className="text-2xl sm:text-3xl font-light">
             Our Collections
           </h2>
-          <p>BlindBear is a Gen Z clothing brand built on bold everyday style and honest pricing. Real fits, real people, real affordable.</p>
+
+          <p className="text-sm text-black/60 max-w-lg mt-2">
+            Explore Men & Women collections with oversized t-shirts, hoodies and graphic tees. Designed for everyday comfort and style.
+          </p>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10">
