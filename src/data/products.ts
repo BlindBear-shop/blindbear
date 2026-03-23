@@ -55,7 +55,7 @@ export interface Product {
 // WHATSAPP NUMBER
 export const whatsappNumber = "919083134498";
 
-// PRODUCT DATA (UPDATED PRICES ₹799–₹1099)
+// PRODUCT DATA
 export const products: Product[] = [
   // MEN
   {
@@ -66,7 +66,25 @@ export const products: Product[] = [
     category: "Shirts",
     sizes: ["S", "M", "L", "XL"],
     colors: [{ name: "Blue", hex: "#5A7CA8" }],
-    description: "Premium relaxed fit linen shirt designed for everyday comfort.",
+    description: `
+Details:
+- Loose, oversized boxy silhouette
+- Slightly short length, pairs well with wide bottoms
+
+Fit:
+- Oversized
+
+Material:
+- 100% Cotton
+
+Wash Care:
+- Machine wash cold
+- Do not dry clean
+- Do not tumble dry
+
+Note:
+- Images may include colors not available
+    `,
     rating: 4.5,
     reviews: 0,
     inStock: true,
@@ -80,7 +98,25 @@ export const products: Product[] = [
     category: "Shirts",
     sizes: ["S", "M", "L", "XL"],
     colors: [{ name: "Sky Blue", hex: "#87CEEB" }],
-    description: "Modern casual shirt crafted from breathable cotton.",
+    description: `
+Details:
+- Clean casual silhouette for everyday wear
+- Lightweight and breathable fabric
+
+Fit:
+- Regular Fit
+
+Material:
+- 100% Cotton
+
+Wash Care:
+- Machine wash cold
+- Do not bleach
+- Do not tumble dry
+
+Note:
+- Color may slightly vary due to lighting
+    `,
     rating: 4.6,
     reviews: 0,
     inStock: true,
@@ -96,7 +132,24 @@ export const products: Product[] = [
     category: "Skirts",
     sizes: ["XS", "S", "M", "L"],
     colors: [{ name: "Black", hex: "#000000" }],
-    description: "Elegant tiered maxi skirt designed for graceful movement.",
+    description: `
+Details:
+- Flowing tiered design for elegant movement
+- High-waist silhouette
+
+Fit:
+- Relaxed Fit
+
+Material:
+- 100% Cotton
+
+Wash Care:
+- Machine wash cold
+- Do not bleach
+
+Note:
+- Perfect for casual and festive styling
+    `,
     rating: 4.8,
     reviews: 0,
     inStock: true,
@@ -110,7 +163,24 @@ export const products: Product[] = [
     category: "Skirts",
     sizes: ["XS", "S", "M", "L"],
     colors: [{ name: "Green", hex: "#2E4F3E" }],
-    description: "Comfortable ribbed knit skirt perfect for minimal outfits.",
+    description: `
+Details:
+- Ribbed texture with stretch comfort
+- Minimal clean design
+
+Fit:
+- Slim Fit
+
+Material:
+- Cotton Blend
+
+Wash Care:
+- Hand wash recommended
+- Do not tumble dry
+
+Note:
+- Ideal for minimal outfits
+    `,
     rating: 4.7,
     reviews: 0,
     inStock: true,
@@ -124,7 +194,24 @@ export const products: Product[] = [
     category: "Dresses",
     sizes: ["XS", "S", "M", "L"],
     colors: [{ name: "Blue", hex: "#6F8FAF" }],
-    description: "Lightweight cotton tiered dress ideal for summer wear.",
+    description: `
+Details:
+- Tiered structure with flowy silhouette
+- Lightweight summer essential
+
+Fit:
+- Relaxed Fit
+
+Material:
+- 100% Cotton
+
+Wash Care:
+- Machine wash cold
+- Do not bleach
+
+Note:
+- Best suited for warm weather
+    `,
     rating: 4.8,
     reviews: 0,
     inStock: true,
@@ -138,7 +225,24 @@ export const products: Product[] = [
     category: "Loungewear",
     sizes: ["S", "M", "L"],
     colors: [{ name: "Cornflower Blue", hex: "#6495ED" }],
-    description: "Relaxed fit lounge set designed for all-day comfort.",
+    description: `
+Details:
+- Soft and breathable lounge set
+- Designed for all-day comfort
+
+Fit:
+- Relaxed Fit
+
+Material:
+- Cotton Blend
+
+Wash Care:
+- Machine wash cold
+- Do not tumble dry
+
+Note:
+- Ideal for home and casual outings
+    `,
     rating: 4.6,
     reviews: 0,
     inStock: true,
@@ -152,7 +256,24 @@ export const products: Product[] = [
     category: "Ethnic",
     sizes: ["S", "M", "L", "XL"],
     colors: [{ name: "Mint Green", hex: "#A8E6CF" }],
-    description: "Elegant floral printed kurta set with a modern ethnic design.",
+    description: `
+Details:
+- Elegant floral print with modern ethnic touch
+- Comfortable and breathable design
+
+Fit:
+- Regular Fit
+
+Material:
+- Cotton
+
+Wash Care:
+- Hand wash recommended
+- Do not bleach
+
+Note:
+- Perfect for festive and daily wear
+    `,
     rating: 4.9,
     reviews: 0,
     inStock: true,
