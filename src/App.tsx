@@ -56,7 +56,7 @@ const PageLayout = () => {
     >
       <Navbar />
 
-      <main className="pt-4 sm:pt-6 lg:pt-8">
+      <main className="pt-8 sm:pt-10 lg:pt-14">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/products" element={<ProductsPage />} />
