@@ -1,5 +1,5 @@
-import { useState, useMemo } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useState, useMemo, useEffect } from "react";
+import { useSearchParams, Link } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import ProductCard from "@/components/ProductCard";
 import { products, categories } from "@/data/products";
@@ -16,9 +16,22 @@ const ProductsPage = () => {
   const [searchParams] = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [sortBy, setSortBy] = useState("new");
-  const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
+  const [selectedSizes, setSelectedSizes] = useState<string[]>([];
 
   const genderFilter = searchParams.get("gender");
+
+  // 🔥 SEO TITLE + META
+  useEffect(() => {
+    document.title = "BlindBear";
+
+    const meta = document.querySelector("meta[name='description']");
+    if (meta) {
+      meta.setAttribute(
+        "content",
+        "Shop all products from BlindBear including oversized t-shirts, hoodies, and streetwear for men and women in India."
+      );
+    }
+  }, []);
 
   const filtered = useMemo(() => {
     let result: any[] = [...products];
@@ -58,22 +71,32 @@ const ProductsPage = () => {
 
   return (
     <div className="pt-[90px] lg:pt-[110px] pb-14">
-      
-      {/* Header */}
+
+      {/* 🔥 SEO H1 */}
       <div className="container mb-5">
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-display">
-          All Products
+          Streetwear Collection – BlindBear
         </h1>
+
         <p className="text-xs text-gray-500 mt-1">
           {filtered.length} products
         </p>
       </div>
 
-      {/* 🔥 Sticky Toolbar */}
+      {/* 🔥 SEO CONTENT (IMPORTANT) */}
+      <div className="container mb-6 max-w-3xl">
+        <p className="text-sm text-gray-700">
+          Explore the full collection from BlindBear, a modern streetwear brand in India.
+          Discover oversized t-shirts, hoodies, and minimal everyday fashion designed for comfort and style.
+          Our collection is built for Gen Z with premium quality and bold identity.
+        </p>
+      </div>
+
+      {/* Toolbar */}
       <div className="sticky top-[70px] lg:top-[90px] z-20 bg-white border-b">
         <div className="container py-3 flex items-center justify-between gap-3">
 
-          {/* Categories (SCROLL FIXED) */}
+          {/* Categories */}
           <div className="flex gap-2 overflow-x-auto scrollbar-hide">
             {categories.map((cat) => (
               <button
@@ -103,6 +126,7 @@ const ProductsPage = () => {
                 </option>
               ))}
             </select>
+
             <ChevronDown
               size={12}
               className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none"
@@ -128,7 +152,7 @@ const ProductsPage = () => {
         </div>
       </div>
 
-      {/* Products Grid */}
+      {/* Products */}
       <div className="container mt-5">
         {filtered.length === 0 ? (
           <div className="text-center py-20 text-gray-500">
@@ -148,6 +172,13 @@ const ProductsPage = () => {
             ))}
           </div>
         )}
+      </div>
+
+      {/* 🔥 INTERNAL LINK BOOST */}
+      <div className="container mt-12 text-center text-sm text-gray-600">
+        <Link to="/" className="underline">
+          Back to Home
+        </Link>
       </div>
     </div>
   );
