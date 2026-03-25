@@ -7,17 +7,21 @@
   <!-- Viewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- ✅ CLEAN BRAND TITLE -->
+  <!-- ✅ BRAND TITLE ONLY -->
   <title>BlindBear</title>
 
-  <!-- ✅ SEO DESCRIPTION (kept strong but clean) -->
+  <!-- 🔥 HEAVY SEO DESCRIPTION (COMPENSATES TITLE) -->
   <meta
     name="description"
-    content="BlindBear – Gen Z streetwear brand in India. Explore Men & Women collections with oversized t-shirts, hoodies and graphic tees."
+    content="BlindBear is a streetwear brand in India offering oversized t-shirts, hoodies, graphic tees and modern clothing for men and women. Shop premium Gen Z fashion online."
   />
 
+  <!-- 🔥 KEYWORDS (minor but still useful) -->
+  <meta name="keywords"
+    content="BlindBear, streetwear India, oversized t-shirts, hoodies India, graphic tees, Gen Z fashion, clothing brand India" />
+
   <!-- Robots -->
-  <meta name="robots" content="index, follow" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
 
   <!-- Canonical -->
   <link rel="canonical" href="https://blindbear.shop/" />
@@ -28,14 +32,15 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="/favicon.png" />
 
-  <!-- Fonts -->
+  <!-- 🔥 PERFORMANCE -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-  <!-- Google Analytics -->
+  <!-- 🔥 GOOGLE ANALYTICS -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6QD6JL3WDL"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -44,37 +49,56 @@
     gtag('config', 'G-6QD6JL3WDL');
   </script>
 
-  <!-- 🔥 OPEN GRAPH (STRICT BRAND) -->
+  <!-- 🔥 OPEN GRAPH (SOCIAL BOOST) -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="BlindBear" />
   <meta property="og:site_name" content="BlindBear" />
   <meta property="og:description"
-    content="Explore Men & Women collections at BlindBear. Oversized t-shirts and everyday streetwear." />
-  <meta property="og:url" content="https://blindbear.shop" />
+    content="Premium oversized streetwear brand in India. Shop t-shirts, hoodies and modern fashion." />
+  <meta property="og:url" content="https://blindbear.shop/" />
   <meta property="og:image"
-    content="https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/fd3e7586-aa9c-4e93-8997-0a1be9214fc0" />
+    content="https://blindbear.shop/og-image.jpg" />
 
-  <!-- Twitter -->
+  <!-- 🔥 TWITTER -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="BlindBear" />
   <meta name="twitter:description"
-    content="Explore Men & Women collections at BlindBear." />
+    content="Shop premium streetwear at BlindBear." />
   <meta name="twitter:image"
-    content="https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/fd3e7586-aa9c-4e93-8997-0a1be9214fc0" />
+    content="https://blindbear.shop/og-image.jpg" />
 
-  <!-- 🔥 STRUCTURED DATA (STRICT BRAND SIGNAL) -->
+  <!-- 🔥 GEO TAGS (LOCAL BOOST INDIA) -->
+  <meta name="geo.region" content="IN" />
+  <meta name="geo.placename" content="India" />
+  <meta name="geo.position" content="20.5937;78.9629" />
+  <meta name="ICBM" content="20.5937, 78.9629" />
+
+  <!-- 🔥 STRUCTURED DATA (STRONG BRAND SIGNAL) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Brand",
-    "name": "BlindBear",
-    "url": "https://blindbear.shop",
-    "logo": "https://blindbear.shop/favicon.png",
-    "description": "BlindBear is a Gen Z streetwear brand in India offering men and women clothing.",
-    "sameAs": [
-      "https://instagram.com/blindbear",
-      "https://www.facebook.com/share/18fcdKwktj/",
-      "https://www.linkedin.com/in/blind-bear-9857a03b9/"
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "BlindBear",
+        "url": "https://blindbear.shop/",
+        "logo": "https://blindbear.shop/favicon.png",
+        "sameAs": [
+          "https://instagram.com/blindbear",
+          "https://www.facebook.com/share/18fcdKwktj/",
+          "https://www.linkedin.com/in/blind-bear-9857a03b9/"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "name": "BlindBear",
+        "url": "https://blindbear.shop/",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://blindbear.shop/products?search={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
     ]
   }
   </script>
@@ -83,7 +107,17 @@
 
 <body>
 
-  <!-- ✅ REMOVE HIDDEN SEO TEXT (IMPORTANT) -->
+  <!-- 🔥 SEO H1 (VERY IMPORTANT) -->
+  <h1 style="display:none;">
+    BlindBear Streetwear Brand India – Oversized T-Shirts & Hoodies
+  </h1>
+
+  <!-- 🔥 EXTRA SEO CONTENT (CRAWLER BOOST) -->
+  <p style="display:none;">
+    BlindBear is a modern clothing brand in India focused on oversized t-shirts,
+    hoodies, and streetwear fashion for men and women. Designed for Gen Z with
+    premium quality and minimal style.
+  </p>
 
   <!-- React Root -->
   <div id="root"></div>
