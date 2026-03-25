@@ -6,37 +6,25 @@ import ProductCard from "@/components/ProductCard";
 import { products } from "@/data/products";
 import video_homepage from "@/assets/video_homepage.mp4";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
-/* BASIC FADE ANIMATION */
+/* ANIMATIONS */
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: (i: number = 0) => ({
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.6,
-      delay: i * 0.12,
-    },
+    transition: { duration: 0.6, delay: i * 0.12 },
   }),
 };
 
-/* PREMIUM BLUR REVEAL */
 const blurReveal: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 30,
-    filter: "blur(20px)",
-  },
+  hidden: { opacity: 0, y: 30, filter: "blur(20px)" },
   visible: (i: number = 0) => ({
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
-    transition: {
-      duration: 0.9,
-      delay: i * 0.15,
-      ease: "easeOut",
-    },
+    transition: { duration: 0.9, delay: i * 0.15, ease: "easeOut" },
   }),
 };
 
@@ -45,6 +33,12 @@ const HomePage = () => {
 
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
+
+  // 🔥 SEO TITLE FIX
+  useEffect(() => {
+    document.title =
+      "BlindBear";
+  }, []);
 
   const toggleMusic = () => {
     if (!audioRef.current) return;
@@ -60,7 +54,7 @@ const HomePage = () => {
 
   return (
     <div className="w-full overflow-x-hidden">
-      {/* MUSIC */}
+      {/* AUDIO */}
       <audio ref={audioRef} loop>
         <source src="/music/fashion.mp3" type="audio/mp3" />
       </audio>
@@ -88,76 +82,57 @@ const HomePage = () => {
 
         <div className="absolute inset-0 bg-black/50" />
 
-        {/* 🔥 MORE TOP SPACE ADDED */}
-        <div className="relative h-full flex items-center pt-20 sm:pt-0 px-6 sm:px-12 lg:px-20">
+        <div className="relative h-full flex items-center pt-20 px-6 sm:px-12 lg:px-20">
+          <motion.div initial="hidden" animate="visible" className="max-w-xl text-white">
 
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            className="max-w-md sm:max-w-xl text-white"
-          >
-            {/* HEADLINE */}
+            {/* ✅ H1 (VERY IMPORTANT FOR SEO) */}
             <motion.h1
               variants={blurReveal}
               className="font-[Playfair_Display] text-5xl sm:text-6xl lg:text-7xl leading-[1.1] mb-8"
             >
-              <motion.span variants={blurReveal} custom={1} className="block">
-                BlindBear
-              </motion.span>
-
-              <motion.span
-                variants={blurReveal}
-                custom={2}
-                className="block italic text-white/90 text-2xl sm:text-3xl lg:text-4xl"
-              >
-                High Quality, Minimalistic Clothing
-              </motion.span>
+              BlindBear
+              <span className="block italic text-white/90 text-2xl sm:text-3xl lg:text-4xl mt-2">
+                Streetwear Brand in India
+              </span>
             </motion.h1>
 
-            {/* 🔥 BUTTON SIZE FIXED */}
-            <motion.div
-              variants={fadeUp}
-              custom={4}
-              className="flex flex-col items-start gap-4"
-            >
+            <motion.div variants={fadeUp} custom={4} className="flex flex-col gap-4">
               <Link
                 to="/products?gender=men"
-                className="backdrop-blur-md bg-white/20 border border-white/30
-                text-white px-7 py-3 text-xs uppercase tracking-[0.2em]
-                hover:bg-white/30 transition"
+                className="bg-white/20 border border-white/30 text-white px-7 py-3 text-xs uppercase tracking-[0.2em]"
               >
                 Men Clothing
               </Link>
 
               <Link
                 to="/products?gender=women"
-                className="bg-transparent border border-white/50
-                text-white px-7 py-3 text-xs uppercase tracking-[0.2em]
-                hover:bg-white/10 transition"
+                className="border border-white/50 text-white px-7 py-3 text-xs uppercase tracking-[0.2em]"
               >
-                Explore Women Clothing
+                Women Clothing
               </Link>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
+      {/* ✅ SEO CONTENT (CRITICAL FIX) */}
+      <section className="container py-10">
+        <p className="text-sm text-gray-700 max-w-3xl">
+          BlindBear is a modern streetwear brand in India focused on oversized t-shirts, hoodies, and everyday fashion. 
+          Designed for Gen Z, our collections combine comfort, minimalism, and bold identity. 
+          Explore high-quality clothing made for real people and real style.
+        </p>
+      </section>
+
       {/* FEATURED */}
-      <section className="container py-14 sm:py-16">
+      <section className="container py-14">
         <div className="mb-8">
-          <p className="text-[10px] uppercase tracking-[0.25em] text-black/40 mb-1">
-            BlindBear Clothing
-          </p>
-      
           <h2 className="text-2xl sm:text-3xl font-light">
             Our Collections
           </h2>
-          <p>
-            BlindBear is a Gen Z clothing brand built on bold everyday style and honest pricing. Real fits, real people, real affordable.
-          </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {featuredProducts.map((product, i) => (
             <ProductCard key={product.id} product={product} index={i} />
           ))}
